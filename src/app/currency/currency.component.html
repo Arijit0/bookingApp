@@ -1,0 +1,40 @@
+
+ 
+    <h4 class="mb-2">Change Currency</h4>
+    <hr>
+    <h4 class="mb-2">Top Currencies:</h4>
+    <hr>
+
+    <h4 class="mb-2">Other Currencies:</h4>
+    <hr>
+
+    <div class="container-fluid">
+
+        <div class="row">
+          
+            <div class="col-md-4" *ngFor="let eachcurrency of currencies; let i = index">
+                
+                <div class="row">
+               
+                    <div class="col-md-2"> <img src="https://bookcheap.com.au/cdn/wp-content/uploads/{{eachcurrency.FLAG}}" alt="" srcset=""> </div>
+                    <a  (click)="selectedCurrency(eachcurrency)" class="pl-2 col-md-10">{{eachcurrency.NAME}}</a>
+
+                </div>
+
+            </div>
+                
+
+        </div> 
+
+                <!-- <div class="row">
+                    
+                    <div *ngIf="i + 0 < currencies.length">{{ currencies[i + 0].NAME }}</div>
+                    <div *ngIf="i + 1 < currencies.length">{{ currencies[i + 1].NAME }}</div>
+                    <div *ngIf="i + 2 < currencies.length">{{ currencies[i + 2].NAME }}</div>
+                </div> -->
+           
+        
+
+    </div>
+
+

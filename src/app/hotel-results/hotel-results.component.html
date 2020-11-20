@@ -1,0 +1,402 @@
+<!-- Preloader -->
+<div id="preloader" *ngIf="loaderShow">
+  <div data-loader="dual-ring"></div>
+</div>
+<!-- Preloader End -->
+
+<!-- Document Wrapper   
+============================================= -->
+<div id="main-wrapper">
+
+
+    
+        <!-- Page Header
+      ============================================= -->
+      <section class="page-header page-header-text-light bg-secondary">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h1>Hotels - List Page</h1>
+            </div>
+            <div class="col-md-4">
+              <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking-hotels.html">Hotels</a></li>
+                <li class="active">Hotels List Page</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Page Header end -->
+      
+    <!-- Content
+    ============================================= -->
+    <div id="content">
+      <section class="container">
+          <div class="row">
+            <div class="col mb-2">
+              <app-hotelsearchpanel (reply)="hotelInfoGet()"></app-hotelsearchpanel>
+            </div>
+          </div>
+          <div class="row">
+          
+          <!-- Side Panel
+          ============================================= -->
+          <aside class="col-lg-3">
+              <div class="bg-light shadow-md rounded p-3">
+                <h3 class="text-5">
+                  Filter
+                  <span class="text-1"
+                    >({{ hotelSearchResults.length }} Hotels found)</span
+                  >
+                </h3>
+                <div class="accordion accordion-alternate style-2" id="toggleAlternate">
+                
+                <div class="card">
+                    <div class="card-header" id="hotelName">
+                      <h5 class="mb-0"> <a href="#" class="collapse" data-toggle="collapse" data-target="#togglehotelName" aria-expanded="true" aria-controls="togglehotelName">Hotel Name</a> </h5>
+                    </div>
+                    <div id="togglehotelName" class="collapse show" aria-labelledby="hotelName">
+                      <div class="card-body">
+
+                       
+                      
+                        <div class="form-row">
+                            <div class="col-md-12 col-lg form-group mb-0">
+                            <input type="text" #myInput (input)="hotelSearchFilter(myInput.value)" class="form-control form-control-sm" id="SearchHotel" placeholder="Search by Hotel Name">
+                            <span class="icon-inside"><i class="fas fa-search"></i></span>
+
+                            
+                        </div>
+                        </div>
+
+                     
+                        
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="card">
+                    <div class="card-header" id="price">
+                      <h5 class="mb-0">
+                        <a
+                          href="#"
+                          class="collapse"
+                          data-toggle="collapse"
+                          data-target="#togglePrice"
+                          aria-expanded="true"
+                          aria-controls="togglePrice"
+                          >Price</a
+                        >
+                      </h5>
+                    </div>
+                    <div
+                      id="togglePrice"
+                      class="collapse show"
+                      aria-labelledby="price"
+                    >
+                      <div class="card-body">
+                        <p>
+                          <input
+                            id="amount"
+                            type="text"
+                            readonly
+                            class="form-control border-0 bg-transparent p-0"
+                          />
+                        </p>
+                        <div id="slider-range"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="card">
+                    <div class="card-header" id="propertyTypes">
+                      <h5 class="mb-0"> <a href="#" class="collapse" data-toggle="collapse" data-target="#togglepropertyTypes" aria-expanded="true" aria-controls="togglepropertyTypes">Property Types</a> </h5>
+                    </div>
+                    <div id="togglepropertyTypes" class="collapse show" aria-labelledby="propertyTypes">
+                      <div class="card-body">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="hotel" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="hotel">Hotel <small class="text-muted float-right">250</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="resort" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="resort">Resort <small class="text-muted float-right">76</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="villa" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="villa">Villa <small class="text-muted float-right">31</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="heritage" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="heritage">Heritage <small class="text-muted float-right">12</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="motel" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="motel">Motel <small class="text-muted float-right">5</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="guestHouse" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="guestHouse">Guest House <small class="text-muted float-right">107</small></label>                      </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="farmHouse" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="farmHouse">Farm House <small class="text-muted float-right">66</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="palace" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="palace">Palace <small class="text-muted float-right">18</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="sercicedApartments" name="propertyTypes" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="sercicedApartments">Serviced Apartments <small class="text-muted float-right">41</small></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  <div class="card">
+                    <div class="card-header" id="starCategory">
+                      <h5 class="mb-0"> <a href="#" class="collapse" data-toggle="collapse" data-target="#togglestarCategory" aria-expanded="true" aria-controls="togglestarCategory">Star Category</a> </h5>
+                    </div>
+                    <div id="togglestarCategory" class="collapse show" aria-labelledby="starCategory">
+                      <div class="card-body">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="5Star" name="starCategory" class="custom-control-input" [(ngModel)]="fiveStar" (change)="starfilter()">
+                          <label class="custom-control-label d-block" for="5Star">5 Star <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> <small class="text-muted float-right">563</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="4Star" name="starCategory" class="custom-control-input" [(ngModel)]="fourStar" (change)="starfilter()">
+                          <label class="custom-control-label d-block" for="4Star">4 Star <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><small class="text-muted float-right">562</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="3Star" name="starCategory" class="custom-control-input" [(ngModel)]="threeStar" (change)="starfilter()">
+                          <label class="custom-control-label d-block" for="3Star">3 Star <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> <small class="text-muted float-right">561</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="2Star" name="starCategory" class="custom-control-input" [(ngModel)]="twoStar" (change)="starfilter()">
+                          <label class="custom-control-label d-block" for="2Star">2 Star <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i> <small class="text-muted float-right">560</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="1Star" name="starCategory" class="custom-control-input" [(ngModel)]="oneStar" (change)="starfilter()">
+                          <label class="custom-control-label d-block" for="1Star">1 Star <i class="fas fa-star text-warning"></i> <small class="text-muted float-right">559</small></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="card">
+                    <div class="card-header" id="userReview">
+                      <h5 class="mb-0"> <a href="#" class="collapse" data-toggle="collapse" data-target="#toggleuserReview" aria-expanded="true" aria-controls="toggleuserReview">User Review</a> </h5>
+                    </div>
+                    <div id="toggleuserReview" class="collapse show" aria-labelledby="userReview">
+                      <div class="card-body">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="excellent" name="userReview" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="excellent">Excellent <small class="text-muted float-right">499</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="good" name="userReview" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="good">Good <small class="text-muted float-right">310</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="fair" name="userReview" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="fair">Fair <small class="text-muted float-right">225</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="poor" name="userReview" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="poor">Poor <small class="text-muted float-right">110</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="bad" name="userReview" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="bad">Bad <small class="text-muted float-right">44</small></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  <!-- <div class="card">
+                    <div class="card-header" id="amenities">
+                      <h5 class="mb-0"> <a href="#" class="collapse" data-toggle="collapse" data-target="#toggleamenities" aria-expanded="true" aria-controls="toggleamenities">Amenities</a> </h5>
+                    </div>
+                    <div id="toggleamenities" class="collapse show" aria-labelledby="amenities">
+                      <div class="card-body">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="internetWiFi" name="amenities" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="internetWiFi"><i class="fas fa-wifi"></i> Internet/Wi-Fi <small class="text-muted float-right">512</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="restaurant" name="amenities" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="restaurant"><i class="fas fa-utensils"></i> Restaurant <small class="text-muted float-right">476</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="bar" name="amenities" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="bar"><i class="fas fa-glass-martini"></i> Bar <small class="text-muted float-right">176</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="swimmingPool" name="amenities" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="swimmingPool"><i class="fas fa-swimmer"></i> Swimming Pool <small class="text-muted float-right">231</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="businessFacilities" name="amenities" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="businessFacilities"><i class="fas fa-chalkboard-teacher"></i> Business Facilities <small class="text-muted float-right">5</small></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="spaWellness" name="amenities" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="spaWellness"><i class="fas fa-spa"></i> Spa/Wellness <small class="text-muted float-right">107</small></label>                      </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="gym" name="amenities" class="custom-control-input">
+                          <label class="custom-control-label d-block" for="gym"><i class="fas fa-dumbbell"></i> Gym <small class="text-muted float-right">66</small></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                  
+                </div>
+              </div>
+            </aside><!-- Side Panel end -->
+            
+            <div class="col-lg-9 mt-4 mt-lg-0">
+            <!-- Sort Filters
+            ============================================= -->
+        <div *ngIf="!errorShow" class="border-bottom mb-3 pb-3">
+            <div class="row align-items-center">
+                <div class="col-6 col-md-8">
+                <span class="mr-3"><span class="text-4">{{hotelCity}},{{hotelCountry}}:</span> <span class="font-weight-600">{{hotelSearchResults.length}} Hotels</span> found</span> <span class="text-warning text-nowrap">Prices inclusive of taxes</span></div>
+                <div class="col-6 col-md-4">
+                <div class="row no-gutters ml-auto">
+                  <label class="col col-form-label-sm text-right mr-2 mb-0" for="input-sort">Sort By:</label>
+                  <select 
+                  id="input-sort"
+                   class="custom-select custom-select-sm col"
+                    (change)="sort($event.target.value)">
+                   
+                    <option value="" selected>Select option</option>
+                    <option value="price">Cheapest</option>
+                   
+                  </select>
+                </div>
+                </div>
+                </div>
+            </div><!-- Sort Filters end -->
+            
+            <!-- List Item
+            ============================================= -->
+           <div *ngIf="!errorShow">
+            <div class="hotels-list"  *ngFor="let results of hotelSearchResults;let i=index;">
+              <ng-container *ngIf="results.namefilter && results.pricefilter && results.starfilter">
+                <div class="hotels-item bg-light shadow-md rounded p-3" *ngFor="let res of results.local_db_data" id="list">
+                  <div class="row">
+                    <div class="col-md-4">
+                        <a href="#"><img class="img-fluid rounded align-top" [src]="res.THUMB_IMAGE" alt="hotels"></a>
+                    </div>
+                    <div class="col-md-8 pl-3 pl-md-0 mt-3 mt-md-0">
+                        <div class="row no-gutters">
+                        <div class="col-sm-9">
+                        <h4><a (click)="hotelroomInfo(i,res.HOTEL_NAME)" class="text-dark text-5">{{res.HOTEL_NAME}}</a></h4>
+                        <p class="mb-2">
+
+                            <span class="mr-2" *ngIf="res.RATING == '559'">
+                            <i class="fas fa-star text-warning"></i>
+                            </span>
+
+                            <span class="mr-2" *ngIf="res.RATING == '560'">
+                              <i class="fas fa-star text-warning"></i>
+                              <i class="fas fa-star text-warning"></i>
+                            </span>
+
+                            <span class="mr-2" *ngIf="res.RATING == '561'">
+                              <i class="fas fa-star text-warning"></i>
+                              <i class="fas fa-star text-warning"></i>
+                              <i class="fas fa-star text-warning"></i>
+                            </span>
+
+                            <span class="mr-2" *ngIf="res.RATING == '562'">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            </span>
+
+                            <span class="mr-2" *ngIf="res.RATING == '563'">
+                              <i class="fas fa-star text-warning"></i>
+                              <i class="fas fa-star text-warning"></i>
+                              <i class="fas fa-star text-warning"></i>
+                              <i class="fas fa-star text-warning"></i>
+                              <i class="fas fa-star text-warning"></i>
+                            </span>
+
+
+                            <span class="text-black-50"><i class="fas fa-map-marker-alt"></i> 
+                              {{res.HOTEL_CITY}},{{res.HOTEL_COUNTRY}}</span>
+
+                              <a class="pl-2"><i class="fas fa-heart" (click)="addToFavourites(res)" style="color:red"></i></a>
+
+                              
+                        </p>
+                        <!-- <p class="hotels-amenities d-flex align-items-center mb-2 text-4">
+                            <span data-toggle="tooltip" data-original-title="Internet/Wi-Fi"><i class="fas fa-wifi"></i></span>
+                            <span data-toggle="tooltip" data-original-title="Restaurant"><i class="fas fa-utensils"></i></span>
+                            <span data-toggle="tooltip" data-original-title="Bar"><i class="fas fa-glass-martini"></i></span>
+                            <span data-toggle="tooltip" data-original-title="Swimming Pool"><i class="fas fa-swimmer"></i></span>
+                            <span class="disabled" data-toggle="tooltip" data-original-title="Business Facilities"><i class="fas fa-chalkboard-teacher"></i></span>
+                            <span data-toggle="tooltip" data-original-title="Spa"><i class="fas fa-spa"></i></span>
+                            <span data-toggle="tooltip" data-original-title="Gym"><i class="fas fa-dumbbell"></i></span>
+                            <span class="cf border rounded-pill text-1 text-nowrap px-2">Couple Friendly</span>
+                        </p> -->
+                        <p class="reviews mb-2">
+                            <!-- <span class="reviews-score px-2 py-1 rounded font-weight-600 text-light">8.2</span> <span class="font-weight-600">Excellent</span> <a class="text-black-50" href="#">({{res.RATING}} reviews)</a> -->
+                        </p>
+                        <p class=" mb-0">{{res.DESCRIPTION2}}</p>
+                        </div>
+                        <div class="col-sm-3 text-right d-flex d-sm-block align-items-center">
+                            <!-- <div class="text-success text-3 mb-0 mb-sm-1 order-2 ">16% Off!</div>
+                            <div class="d-block text-3 text-black-50 mb-0 mb-sm-2 mr-2 mr-sm-0 order-1"><del class="d-block">$250</del></div> -->
+                            <div class="text-black-50 mb-0 mb-sm-2 order-3 d-none d-sm-block">Price per night from</div>
+                            <div class="text-dark font-weight-bold">{{selectedCurrency.SHORTCUT}} {{results.dotw_db_data.from_curr}}</div>
+                            <a class="btn btn-sm btn-primary order-4 ml-auto text-light" (click)="hotelroomInfo(i,res.HOTEL_NAME)">Hotel Info</a>
+                         </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+             
+              </ng-container>
+            
+             
+              </div>
+           </div>
+              
+             
+
+              <div *ngIf="errorShow">
+                <h3>{{ errormsg }}</h3>
+              </div>
+              
+              <!-- List Item end -->
+            
+            
+            </div>
+          </div>
+      </section>
+    </div><!-- Content end -->
+
+       <!-- Login/ SignUp Popup -->
+
+  <div id="login-signup" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content p-sm-3">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                  
+          <app-login-signup-panel></app-login-signup-panel>
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+    <!-- Login/ SignUp Popup -->
+    
+  
+    
+  </div><!-- Document Wrapper end -->
+
+  

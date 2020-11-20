@@ -1,0 +1,93 @@
+<div class="bg-light shadow-md rounded p-4"> 
+  <!-- Orders History
+  ============================================= -->
+  <h4 class="mb-3">Orders History</h4>
+  <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+    <li class="nav-item"> <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab" aria-controls="first" aria-selected="true">All</a> </li>
+    <li class="nav-item"> <a class="nav-link" id="second-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second" aria-selected="false">Flight Bookings</a> </li>
+    <li class="nav-item"> <a class="nav-link" id="third-tab" data-toggle="tab" href="#third" role="tab" aria-controls="third" aria-selected="false">Hotel Bookings</a> </li>
+  </ul>
+  <div class="tab-content my-3" id="myTabContent">
+    <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+      <div class="table-responsive-md">
+        <table class="table table-hover border">
+          <thead class="thead-light">
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Order ID</th>
+              <th class="text-center">Status</th>
+              <th class="text-right">Amount</th>
+              <!-- <th class="text-center"></th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let eachOrder of orderHistoryList" (click)="gotoDetails(eachOrder.hash)">
+              <td class="align-middle">{{dateFormat(eachOrder.SAVE_TIMESTAMP)}}</td>
+              <td class="align-middle"><img src="images/brands/operator/vodafone.jpg" class="img-thumbnail d-inline-flex mr-1"> <span class="text-1 d-inline-flex">{{eachOrder.BOOKING_TYPE}}</span></td>
+              <td class="align-middle">{{eachOrder.ID}}</td>
+              <td class="align-middle text-center"><i class="fas fa-check-circle text-4 text-success" data-toggle="tooltip" data-original-title="Your order is Successful"></i></td>
+              <td class="align-middle text-right">{{numberWithCommas(eachOrder.MoreDetails.bookflightInfo.AirItineraryPricingInfo.ItinTotalFare.TotalFare)}}</td>
+              <!-- <td class="align-middle text-center"><a href="#" data-toggle="tooltip" data-original-title="Repeat Order"><i class="fas fa-redo-alt"></i></a></td> -->
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center pt-3"><a href="#" class="btn btn-outline-primary shadow-none">View More</a></div>
+    </div>
+    <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+      <div class="table-responsive-md">
+        <table class="table table-hover border">
+          <thead class="thead-light">
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Order ID</th>
+              <th class="text-center">Status</th>
+              <th class="text-right">Amount</th>
+              <th class="text-center"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let eachOrder of flightOrderList" (click)="gotoDetails(eachOrder.hash)">
+              <td class="align-middle">{{dateFormat(eachOrder.SAVE_TIMESTAMP)}}</td>
+              <td class="align-middle"><img src="images/brands/operator/vodafone.jpg" class="img-thumbnail d-inline-flex mr-1"> <span class="text-1 d-inline-flex">{{eachOrder.BOOKING_TYPE}}</span></td>
+              <td class="align-middle">{{eachOrder.ID}}</td>
+              <td class="align-middle text-center"><i class="fas fa-check-circle text-4 text-success" data-toggle="tooltip" data-original-title="Your order is Successful"></i></td>
+              <td class="align-middle text-right">{{numberWithCommas(eachOrder.MoreDetails.bookflightInfo.AirItineraryPricingInfo.ItinTotalFare.TotalFare)}}</td>
+              <td class="align-middle text-center"><a href="#" data-toggle="tooltip" data-original-title="Repeat Order"><i class="fas fa-redo-alt"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
+      <div class="table-responsive-md">
+        <table class="table table-hover border">
+          <thead class="thead-light">
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Order ID</th>
+              <th class="text-center">Status</th>
+              <th class="text-right">Amount</th>
+              <th class="text-center"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let eachOrder of hotelOrderList" (click)="gotoDetails(eachOrder.hash)">
+              <td class="align-middle">{{dateFormat(eachOrder.SAVE_TIMESTAMP)}}</td>
+              <td class="align-middle"><img src="images/brands/operator/vodafone.jpg" class="img-thumbnail d-inline-flex mr-1"> <span class="text-1 d-inline-flex">{{eachOrder.BOOKING_TYPE}}</span></td>
+              <td class="align-middle">{{eachOrder.ID}}</td>
+              <td class="align-middle text-center"><i class="fas fa-check-circle text-4 text-success" data-toggle="tooltip" data-original-title="Your order is Successful"></i></td>
+              <td class="align-middle text-right">{{eachOrder.ID.MoreDetails[0].aAmount}}</td>
+              <td class="align-middle text-center"><a href="#" data-toggle="tooltip" data-original-title="Repeat Order"><i class="fas fa-redo-alt"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Orders History end --> 
+</div>

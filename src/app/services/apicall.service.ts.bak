@@ -1,0 +1,31 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders , HttpErrorResponse} from '@angular/common/http';
+import { Observable} from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApicallService {//https://bookcheap.com.au/api/flightApi/airportsearch?key=d
+
+  constructor(private http: HttpClient) { }
+  
+  getAirportListJson(): Observable<any> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+      });
+    return this.http.post("https://bookcheap.com.au/s/hajaz/jsons/featuredlocation.json",null, {headers: headers});
+  }
+
+  getAirportListSearchByKey(key): Observable<any> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+      });
+    return this.http.post("https://bookcheap.com.au/api/flightApi/airportsearch?key="+key,null, {headers: headers});
+  }
+  flightSearchResult(trip,json): Observable<any> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+      });
+    return this.http.post("https://dev.bookcheap.com.au/api/flightApi/getAirLowFareSearch/"+trip,json, {headers: headers});
+  }
+}

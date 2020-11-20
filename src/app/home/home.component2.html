@@ -1,0 +1,752 @@
+<div id="main-wrapper"> 
+  
+  
+  
+  <!-- Content
+  ============================================= -->
+  <div id="content">
+    <div class="hero-wrap py-5">
+      <div class="hero-mask opacity-7 bg-dark"></div>
+      <!-- Slideshow Background -->
+      <div class="hero-bg-slideshow owl-carousel owl-theme" data-animateout="fadeOut" data-animatein="fadeIn" data-autoplay="true" data-loop="true" data-dots="false" data-items="1">
+        <div class="item">
+          <div class="hero-bg" style="background-image:url('./images/bg/image-4.jpg');"></div>
+        </div>
+        <div class="item">
+          <div class="hero-bg" style="background-image:url('./images/bg/image-7.jpg');"></div>
+        </div>
+        <div class="item">
+          <div class="hero-bg" style="background-image:url('./images/bg/image-2.jpg');"></div>
+        </div>
+      </div><!-- Slideshow Background End -->
+      
+      <div class="hero-content py-lg-5 my-lg-5">
+        <div class="container mt-5 pt-4">
+          <h2 class="text-9 font-weight-300 text-light text-center mb-4 mb-md-5">Online Booking. Save Time and Money!</h2>
+          <!-- Tabs -->
+          <ul class="nav nav-tabs border-bottom style-3 justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item"> <a class="nav-link active" id="hotels-tab" data-toggle="tab" href="#hotels" role="tab" aria-controls="hotels" aria-selected="true"><span><i class="fas fa-bed"></i></span> Hotels</a> </li>
+            <li class="nav-item"> <a class="nav-link" id="flights-tab" data-toggle="tab" href="#flights" role="tab" aria-controls="flights" aria-selected="true"><span><i class="fas fa-plane"></i></span> Flights</a> </li>
+            <li class="nav-item"> <a class="nav-link" id="trains-tab" data-toggle="tab" href="#trains" role="tab" aria-controls="trains" aria-selected="false"><span><i class="fas fa-train"></i></span> Trains</a> </li>
+            <li class="nav-item"> <a class="nav-link" id="bus-tab" data-toggle="tab" href="#bus" role="tab" aria-controls="bus" aria-selected="false"><span><i class="fas fa-bus"></i></span> Bus</a> </li>
+            <li class="nav-item"> <a class="nav-link" id="car-tab" data-toggle="tab" href="#car" role="tab" aria-controls="car" aria-selected="false"><span><i class="fas fa-car"></i></span> Cars</a> </li>
+          </ul>
+          <div class="tab-content pt-4 pb-2" id="myTabContent">
+            <!-- Search Hotels -->
+            <div class="tab-pane fade show active" id="hotels" role="tabpanel" aria-labelledby="hotels-tab">
+              <form id="bookingHotels" method="post">
+  <div class="row no-gutters search-input-2">
+    <div class="col-lg form-group">
+      <input type="text" class="form-control" id="hotelsFrom" required placeholder="Enter City">
+      <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+    <div class="col-lg form-group">
+      <input id="hotelsCheckIn" type="text" class="form-control" required placeholder="Check In">
+      <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+    <div class="col-lg form-group">
+      <input id="hotelsCheckOut" type="text" class="form-control" required placeholder="Check Out">
+      <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+    <div class="col-lg travellers-class form-group">
+      <input type="text" id="hotelsTravellersClass" class="travellers-class-input form-control" name="hotels-travellers-class" placeholder="Rooms / People" required onkeypress="return false;">
+      <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+      <div class="travellers-dropdown" style="display: none;">
+        <div class="row align-items-center">
+          <div class="col-sm-7">
+            <p class="mb-sm-0">Rooms</p>
+          </div>
+          <div class="col-sm-5">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#hotels-rooms" data-toggle="spinner">-</button>
+              </div>
+              <input type="text" data-ride="spinner" id="hotels-rooms" class="qty-spinner form-control" value="1" readonly>
+              <div class="input-group-append">
+                <button type="button" class="btn bg-light-4" data-value="increase" data-target="#hotels-rooms" data-toggle="spinner">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mt-2 mb-4">
+        <div class="row align-items-center">
+          <div class="col-sm-7">
+            <p class="mb-sm-0">Adults <small class="text-muted">(12+ yrs)</small></p>
+          </div>
+          <div class="col-sm-5">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#adult-travellers" data-toggle="spinner">-</button>
+              </div>
+              <input type="text" data-ride="spinner" id="adult-travellers" class="qty-spinner form-control" value="1" readonly>
+              <div class="input-group-append">
+                <button type="button" class="btn bg-light-4" data-value="increase" data-target="#adult-travellers" data-toggle="spinner">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-2">
+        <div class="row align-items-center">
+          <div class="col-sm-7">
+            <p class="mb-sm-0">Children <small class="text-muted">(1-12 yrs)</small></p>
+          </div>
+          <div class="col-sm-5">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#children-travellers" data-toggle="spinner">-</button>
+              </div>
+              <input type="text" data-ride="spinner" id="children-travellers" class="qty-spinner form-control" value="0" readonly>
+              <div class="input-group-append">
+                <button type="button" class="btn bg-light-4" data-value="increase" data-target="#children-travellers" data-toggle="spinner">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block submit-done mt-3" type="button">Done</button>
+      </div>
+    </div>
+    <div class="col-lg-2 form-group">
+      <button class="btn btn-primary btn-block" type="submit">Search</button>
+    </div>
+  </div>
+</form>
+            </div>
+            <!-- Search Flight -->
+            <div class="tab-pane fade" id="flights" role="tabpanel" aria-labelledby="flights-tab">
+              <form id="bookingFlight" method="post">
+                <div class="row">
+                  <div class="col-12 order-lg-12 text-light mb-3 mb-lg-0">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input id="oneway" name="flight-trip" class="custom-control-input" checked="" required type="radio">
+                      <label class="custom-control-label" for="oneway">One Way</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input id="roundtrip" name="flight-trip" class="custom-control-input" required type="radio">
+                      <label class="custom-control-label" for="roundtrip">Round Trip</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row no-gutters search-input-2">
+                      <div class="col-lg-2 form-group">
+                        <input type="text" class="form-control" id="flightFrom" required placeholder="From">
+                        <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+                      <div class="col-lg-2 form-group">
+                        <input type="text" class="form-control" id="flightTo" required placeholder="To">
+                        <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+                      <div class="col-lg-2 form-group">
+                        <input id="flightDepart" type="text" class="form-control" required placeholder="Depart Date">
+                        <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+                      <div class="col-lg-2 form-group">
+                        <input id="flightReturn" type="text" class="form-control" required placeholder="Return Date">
+                        <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+                      <div class="col-lg-2 travellers-class form-group">
+                        <input type="text" id="flightTravellersClass" class="travellers-class-input form-control" name="flight-travellers-class" placeholder="Travellers, Class" readonly required onkeypress="return false;">
+                        <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+                        <div class="travellers-dropdown">
+                          <div class="row align-items-center">
+                            <div class="col-sm-7">
+                              <p class="mb-sm-0">Adults <small class="text-muted">(12+ yrs)</small></p>
+                            </div>
+                            <div class="col-sm-5">
+                              <div class="qty input-group">
+                                <div class="input-group-prepend">
+                                  <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#flightAdult-travellers" data-toggle="spinner">-</button>
+                                </div>
+                                <input type="text" data-ride="spinner" id="flightAdult-travellers" class="qty-spinner form-control" value="1" readonly>
+                                <div class="input-group-append">
+                                  <button type="button" class="btn bg-light-4" data-value="increase" data-target="#flightAdult-travellers" data-toggle="spinner">+</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <hr class="my-2">
+                          <div class="row align-items-center">
+                            <div class="col-sm-7">
+                              <p class="mb-sm-0">Children <small class="text-muted">(2-12 yrs)</small></p>
+                            </div>
+                            <div class="col-sm-5">
+                              <div class="qty input-group">
+                                <div class="input-group-prepend">
+                                  <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#flightChildren-travellers" data-toggle="spinner">-</button>
+                                </div>
+                                <input type="text" data-ride="spinner" id="flightChildren-travellers" class="qty-spinner form-control" value="0" readonly>
+                                <div class="input-group-append">
+                                  <button type="button" class="btn bg-light-4" data-value="increase" data-target="#flightChildren-travellers" data-toggle="spinner">+</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <hr class="my-2">
+                          <div class="row align-items-center">
+                            <div class="col-sm-7">
+                              <p class="mb-sm-0">Infants <small class="text-muted">(Below 2 yrs)</small></p>
+                            </div>
+                            <div class="col-sm-5">
+                              <div class="qty input-group">
+                                <div class="input-group-prepend">
+                                  <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#flightInfants-travellers" data-toggle="spinner">-</button>
+                                </div>
+                                <input type="text" data-ride="spinner" id="flightInfants-travellers" class="qty-spinner form-control" value="0" readonly>
+                                <div class="input-group-append">
+                                  <button type="button" class="btn bg-light-4" data-value="increase" data-target="#flightInfants-travellers" data-toggle="spinner">+</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <hr class="mt-2">
+                          <div class="mb-3">
+                            <div class="custom-control custom-radio">
+                              <input id="flightClassEconomic" name="flight-class" class="flight-class custom-control-input" value="0" checked="" required type="radio">
+                              <label class="custom-control-label" for="flightClassEconomic">Economic</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input id="flightClassPremiumEconomic" name="flight-class" class="flight-class custom-control-input" value="1" required type="radio">
+                              <label class="custom-control-label" for="flightClassPremiumEconomic">Premium Economic</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input id="flightClassBusiness" name="flight-class" class="flight-class custom-control-input" value="2" required type="radio">
+                              <label class="custom-control-label" for="flightClassBusiness">Business</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                              <input id="flightClassFirstClass" name="flight-class" class="flight-class custom-control-input" value="3" required type="radio">
+                              <label class="custom-control-label" for="flightClassFirstClass">First Class</label>
+                            </div>
+                          </div>
+                          <button class="btn btn-primary btn-block submit-done" type="button">Done</button>
+                        </div>
+                      </div>
+                      <div class="col-lg-2 form-group">
+                        <button class="btn btn-primary btn-block" type="submit">Search</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Search Train -->
+            <div class="tab-pane fade" id="trains" role="tabpanel" aria-labelledby="trains-tab">
+              <form id="bookingTrain" method="post">
+                <div class="row no-gutters search-input-2">
+                  <div class="col-lg form-group">
+                    <input type="text" class="form-control" id="trainFrom" required placeholder="From">
+                    <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+                  <div class="col-lg form-group">
+                    <input type="text" class="form-control" id="trainTo" required placeholder="To">
+                    <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+                  <div class="col-lg form-group">
+                    <input id="trainDepart" type="text" class="form-control" required placeholder="Depart Date">
+                    <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+                  <div class="col-lg travellers-class form-group">
+                    <input type="text" id="trainTravellersClass"  class="travellers-class-input form-control" name="train-travellers-class" placeholder="Travellers, Class" required onkeypress="return false;">
+                    <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+                    <div class="travellers-dropdown">
+                      <div class="row align-items-center">
+                        <div class="col-sm-7">
+                          <p class="mb-sm-0">Adults <small class="text-muted">(12+ yrs)</small></p>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="qty input-group">
+                            <div class="input-group-prepend">
+                              <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#trainAdult-travellers" data-toggle="spinner">-</button>
+                            </div>
+                            <input type="text" data-ride="spinner" id="trainAdult-travellers" class="qty-spinner form-control" value="1" readonly>
+                            <div class="input-group-append">
+                              <button type="button" class="btn bg-light-4" data-value="increase" data-target="#trainAdult-travellers" data-toggle="spinner">+</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr class="my-2">
+                      <div class="row align-items-center">
+                        <div class="col-sm-7">
+                          <p class="mb-sm-0">Children <small class="text-muted">(2-12 yrs)</small></p>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="qty input-group">
+                            <div class="input-group-prepend">
+                              <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#trainChildren-travellers" data-toggle="spinner">-</button>
+                            </div>
+                            <input type="text" data-ride="spinner" id="trainChildren-travellers" class="qty-spinner form-control" value="0" readonly>
+                            <div class="input-group-append">
+                              <button type="button" class="btn bg-light-4" data-value="increase" data-target="#trainChildren-travellers" data-toggle="spinner">+</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr class="my-2">
+                      <div class="row align-items-center">
+                        <div class="col-sm-7">
+                          <p class="mb-sm-0">Infants <small class="text-muted">(Below 2 yrs)</small></p>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="qty input-group">
+                            <div class="input-group-prepend">
+                              <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#trainInfants-travellers" data-toggle="spinner">-</button>
+                            </div>
+                            <input type="text" data-ride="spinner" id="trainInfants-travellers" class="qty-spinner form-control" value="0" readonly>
+                            <div class="input-group-append">
+                              <button type="button" class="btn bg-light-4" data-value="increase" data-target="#trainInfants-travellers" data-toggle="spinner">+</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group mt-3">
+                        <select id="train-class" name="train-class" class="custom-select">
+                          <option value="0">All Class</option>
+                          <option value="1">First Class</option>
+                          <option value="2">Second Class</option>
+                          <option value="3">First Class Sleeper (SL)</option>
+                          <option value="4">Second Class Sleeper (SL)</option>
+                          <option value="5">Business</option>
+                        </select>
+                      </div>
+                      <button class="btn btn-primary btn-block submit-done" type="button">Done</button>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Search</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Search Bus -->
+            <div class="tab-pane fade" id="bus" role="tabpanel" aria-labelledby="bus-tab">
+              <form id="bookingBus" method="post">
+                <div class="row no-gutters search-input-2">
+                  <div class="col-lg form-group">
+                    <input type="text" class="form-control" id="busFrom" required placeholder="From">
+                    <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+                  <div class="col-lg form-group">
+                    <input type="text" class="form-control" id="busTo" required placeholder="To">
+                    <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+                  <div class="col-lg form-group">
+                    <input id="busDepart" type="text" class="form-control" required placeholder="Depart Date">
+                    <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+                  <div class="col-lg travellers-class form-group">
+                    <input type="text" id="busTravellersClass"  class="travellers-class-input form-control" name="bus-travellers-class" placeholder="Seats" required onkeypress="return false;">
+                    <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+                    <div class="travellers-dropdown">
+                      <div class="row align-items-center mb-3">
+                        <div class="col-sm-7">
+                          <p class="mb-sm-0">Seats</p>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="qty input-group">
+                            <div class="input-group-prepend">
+                              <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#adult-travellers" data-toggle="spinner">-</button>
+                            </div>
+                            <input type="text" data-ride="spinner" id="adult-travellers" class="qty-spinner form-control" value="1" readonly>
+                            <div class="input-group-append">
+                              <button type="button" class="btn bg-light-4" data-value="increase" data-target="#adult-travellers" data-toggle="spinner">+</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary btn-block submit-done" type="button">Done</button>
+                    </div>
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Search</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- Search Car -->
+            <div class="tab-pane fade" id="car" role="tabpanel" aria-labelledby="car-tab">
+            <form id="bookingCars" method="post">
+              <div class="row no-gutters search-input-2">
+                <div class="col-lg-3 form-group">
+                  <input type="text" class="form-control" id="carsCity" required placeholder="Enter City">
+                  <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
+                </div>
+                <div class="col-8 col-lg-2 form-group">
+                  <input id="carsPickup" type="text" class="form-control" required placeholder="Pick-up date">
+                  <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> 
+                  </div>
+                <div class="col-4 col-lg form-group">
+                  <select class="custom-select " id="carsPickuptime" required="">
+                  <option value="">12:00 am</option>
+                  <option>12:30 am</option>
+                  <option>01:00 am</option>
+                  <option>01:30 am</option>
+                  <option>02:00 am</option>
+                  <option>02:30 am</option>
+                  <option>03:00 am</option>
+                  <option>03:30 am</option>
+                  <option>04:00 am</option>
+                  <option>04:30 am</option>
+                  <option>05:00 am</option>
+                  <option>05:30 am</option>
+                  <option>06:00 am</option>
+                  <option>06:30 am</option>
+                  <option>07:00 am</option>
+                  <option>07:30 am</option>
+                  <option>08:00 am</option>
+                  <option>08:30 am</option>
+                  <option>09:00 am</option>
+                  <option>09:30 am</option>
+                  <option>10:00 am</option>
+                  <option>10:30 am</option>
+                  <option>11:00 am</option>
+                  <option>11:30 am</option>
+                  <option>12:00 pm</option>
+                  <option>12:30 pm</option>
+                  <option>01:00 pm</option>
+                  <option>01:30 pm</option>
+                  <option>02:00 pm</option>
+                  <option>02:30 pm</option>
+                  <option>03:00 pm</option>
+                  <option>03:30 pm</option>
+                  <option>04:00 pm</option>
+                  <option>04:30 pm</option>
+                  <option>05:00 pm</option>
+                  <option>05:30 pm</option>
+                  <option>06:00 pm</option>
+                  <option>06:30 pm</option>
+                  <option>07:00 pm</option>
+                  <option>07:30 pm</option>
+                  <option>08:00 pm</option>
+                  <option>08:30 pm</option>
+                  <option>09:00 pm</option>
+                  <option>09:30 pm</option>
+                  <option>10:00 pm</option>
+                  <option>10:30 pm</option>
+                  <option>11:00 pm</option>
+                  <option>11:30 pm</option>
+                  
+                </select> 
+                  </div>
+                <div class="col-8 col-lg-2 form-group">
+                  <input id="carsDropoff" type="text" class="form-control" required placeholder="Drop-off date">
+                  <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> 
+                  </div>
+                <div class="col-4 col-lg form-group">
+                  <select class="custom-select" id="carsDropofftime" required="">
+                  <option value="">12:00 am</option>
+                  <option>12:30 am</option>
+                  <option>01:00 am</option>
+                  <option>01:30 am</option>
+                  <option>02:00 am</option>
+                  <option>02:30 am</option>
+                  <option>03:00 am</option>
+                  <option>03:30 am</option>
+                  <option>04:00 am</option>
+                  <option>04:30 am</option>
+                  <option>05:00 am</option>
+                  <option>05:30 am</option>
+                  <option>06:00 am</option>
+                  <option>06:30 am</option>
+                  <option>07:00 am</option>
+                  <option>07:30 am</option>
+                  <option>08:00 am</option>
+                  <option>08:30 am</option>
+                  <option>09:00 am</option>
+                  <option>09:30 am</option>
+                  <option>10:00 am</option>
+                  <option>10:30 am</option>
+                  <option>11:00 am</option>
+                  <option>11:30 am</option>
+                  <option>12:00 pm</option>
+                  <option>12:30 pm</option>
+                  <option>01:00 pm</option>
+                  <option>01:30 pm</option>
+                  <option>02:00 pm</option>
+                  <option>02:30 pm</option>
+                  <option>03:00 pm</option>
+                  <option>03:30 pm</option>
+                  <option>04:00 pm</option>
+                  <option>04:30 pm</option>
+                  <option>05:00 pm</option>
+                  <option>05:30 pm</option>
+                  <option>06:00 pm</option>
+                  <option>06:30 pm</option>
+                  <option>07:00 pm</option>
+                  <option>07:30 pm</option>
+                  <option>08:00 pm</option>
+                  <option>08:30 pm</option>
+                  <option>09:00 pm</option>
+                  <option>09:30 pm</option>
+                  <option>10:00 pm</option>
+                  <option>10:30 pm</option>
+                  <option>11:00 pm</option>
+                  <option>11:30 pm</option>
+                  
+                </select> 
+                  </div>
+                  <div class="col-lg-2 form-group">
+                  <button class="btn btn-primary btn-block" type="submit">Search</button>
+                </div>  
+              </div>
+              <div class="custom-control custom-checkbox text-light d-inline-block">
+              <input type="checkbox" id="terms" name="termsConditions" checked="" class="custom-control-input">
+              <label class="custom-control-label d-block" for="terms">Driver aged 25 - 70 <span class="text-info" data-toggle="tooltip" data-original-title="Car rental suppliers may charge more if a driver is under 30 or over 60. Please check the car's terms &amp; conditions."><i class="far fa-question-circle"></i></span></label>
+              </div>
+            </form>
+            </div>
+            
+          </div>
+          <!-- Tabs end -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- Banner
+    ============================================= -->
+    <section class="section">
+      <div class="container">
+        <h2 class="text-9 font-weight-500 text-center">Featured Offers</h2>
+        <p class="lead text-center mb-4">Get Best Offers &amp; Discounts</p>
+        <div class="owl-carousel owl-theme" data-autoplay="true" data-loop="true" data-nav="true" data-margin="30" data-items-xs="1" data-items-sm="2" data-items-md="2" data-items-lg="3">
+          <div class="item">
+            <div class="card"> <img class="card-img-top" src="images/slider/small-banner-4.jpg" alt="banner">
+              <div class="card-body">
+                <h5 class="card-title">Up to 10% OFF</h5>
+                <p class="card-text"><a href="#">On Flight Booking <i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card"> <img class="card-img-top" src="images/slider/small-banner-5.jpg" alt="banner">
+              <div class="card-body">
+                <h5 class="card-title">5% OFF</h5>
+                <p class="card-text"><a href="#">On Train Booking <i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card"> <img class="card-img-top" src="images/slider/small-banner-1.jpg" alt="banner">
+              <div class="card-body">
+                <h5 class="card-title">100% Cashback</h5>
+                <p class="card-text"><a href="#">On Bus Booking <i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card"> <img class="card-img-top" src="images/slider/small-banner-6.jpg" alt="banner">
+              <div class="card-body">
+                <h5 class="card-title">$10 Cashback</h5>
+                <p class="card-text"><a href="#">On Metro Card Recharge<i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card"> <img class="card-img-top" src="images/slider/small-banner-2.jpg" alt="banner">
+              <div class="card-body">
+                <h5 class="card-title">$50 Cashback</h5>
+                <p class="card-text"><a href="#">On Brodband Bill<i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card"> <img class="card-img-top" src="images/slider/small-banner-3.jpg" alt="banner">
+              <div class="card-body">
+                <h5 class="card-title">Up to 20% OFF</h5>
+                <p class="card-text"><a href="#">On Cable Payment<i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- Banner end -->
+    
+    <!-- Popular Routes
+    ============================================= -->
+    <section class="section bg-light shadow-md">
+      <div class="container">
+        <h2 class="text-9 font-weight-500 text-center">Popular Routes</h2>
+        <p class="lead text-center mb-4">Search Hotels, Flights, Trains &amp; Bus</p>
+        <ul class="nav nav-tabs nav-fill justify-content-center mb-5" id="myRoutes" role="tablist">
+          <li class="nav-item"> <a class="nav-link active text-4" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="one" aria-selected="true">Hotels</a> </li>
+          <li class="nav-item"> <a class="nav-link text-4" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="two" aria-selected="false">Flights</a> </li>
+          <li class="nav-item"> <a class="nav-link text-4" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="three" aria-selected="false">Trains</a> </li>
+          <li class="nav-item"> <a class="nav-link text-4" id="four-tab" data-toggle="tab" href="#four" role="tab" aria-controls="four" aria-selected="true">Bus</a> </li>
+        </ul>
+        <div class="tab-content" id="myRoutesContent">
+          <div class="tab-pane fade show active" id="one" role="tabpanel" aria-labelledby="one-tab">
+            <div class="row">
+              <div class="col-lg-6">
+                <p class="d-flex align-items-center">Bangkok - <small class="text-muted">655 properties available</small> <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Newyork - <small class="text-muted">243 properties available</small><a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Singapore - <small class="text-muted">468 properties available</small> <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Dubai - <small class="text-muted">474 properties available</small> <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">India - <small class="text-muted">525 properties available</small><a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+              </div>
+              <div class="col-lg-6">
+                <p class="d-flex align-items-center">Lodon - <small class="text-muted">387 properties available</small> <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Toronto - <small class="text-muted">299 properties available</small> <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">China - <small class="text-muted">466 properties available</small> <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Russia - <small class="text-muted">341 properties available</small> <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">United States - <small class="text-muted">712 properties available</small> <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                <hr>
+              </div>
+              <div class="col-12">
+                <p class="text-center mb-0"><a href="#" class="btn btn-link">View All <i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade show" id="two" role="tabpanel" aria-labelledby="two-tab">
+            <div class="row">
+              <div class="col-lg-6">
+                <p class="d-flex align-items-center">Delhi to Mumbai Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Bangalore to Delhi Flights<a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Hyderabad to Delhi Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Ahmedabad to Mumbai Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Mumbai to Chennai Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+              </div>
+              <div class="col-lg-6">
+                <p class="d-flex align-items-center">Mumbai to Dubai Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Delhi to Toronto Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Chennai to Singapore Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Delhi to London Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Kolkata to Bangkok Flights <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                <hr>
+              </div>
+              <div class="col-12">
+                <p class="text-center mb-0"><a href="#" class="btn btn-link">View All <i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="three" role="tabpanel" aria-labelledby="three-tab">
+            <div class="row">
+              <div class="col-lg-6">
+                <p class="d-flex align-items-center">Chennai to Madurai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">London to Manchester<a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Ahmedabad to Mumbai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Liverpool to Manchester <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Bangalore to Chennai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+              </div>
+              <div class="col-lg-6">
+                <p class="d-flex align-items-center">Bangalore to Chennai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">London to Manchester<a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Ahmedabad to Mumbai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Chennai to Madurai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Liverpool to Manchester <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Find Tickets</span></a></p>
+                <hr>
+              </div>
+              <div class="col-12">
+                <p class="text-center mb-0"><a href="#" class="btn btn-link">View All <i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="four" role="tabpanel" aria-labelledby="four-tab">
+            <div class="row">
+              <div class="col-lg-6">
+                <p class="d-flex align-items-center">Hyderabad To Bengaluru <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Chennai To Coimbatore<a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Ahmedabad to Mumbai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Bhopal To Indore <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Bangalore to Chennai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+              </div>
+              <div class="col-lg-6">
+                <p class="d-flex align-items-center">Chennai To Coimbatore<a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Bangalore to Chennai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Ahmedabad to Mumbai <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Hyderabad To Bengaluru <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>
+                <p class="d-flex align-items-center">Bhopal To Indore <a href="#" class="btn btn-sm btn-outline-primary shadow-none ml-auto"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Book Now</span></a></p>
+                <hr>  
+              </div>
+              <div class="col-12">
+                <p class="text-center mb-0"><a href="#" class="btn btn-link">View All <i class="fas fa-arrow-right ml-1"></i></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- Popular Routes end -->
+    
+    <!-- Partners
+    ============================================= -->
+    <div class="hero-wrap section">
+      <div class="hero-mask opacity-8 bg-secondary"></div>
+      <div class="hero-bg" style="background-image:url('./images/bg/image-2.jpg');"></div>
+      <div class="hero-content">
+        <div class="container">
+          <h2 class="text-9 font-weight-500 text-light text-center mb-4">Our Partners</h2>
+          <ul class="nav nav-tabs style-2 justify-content-center" id="myPartners" role="tablist">
+            <li class="nav-item"> <a class="nav-link active" id="operator-one-tab" data-toggle="tab" href="#operator-one" role="tab" aria-controls="operator-one" aria-selected="true">Flights</a> </li>
+            <li class="nav-item"> <a class="nav-link" id="operator-two-tab" data-toggle="tab" href="#operator-two" role="tab" aria-controls="operator-two" aria-selected="false">Trains</a> </li>
+            <li class="nav-item"> <a class="nav-link" id="operator-three-tab" data-toggle="tab" href="#operator-three" role="tab" aria-controls="operator-three" aria-selected="false">Bus</a> </li>
+          </ul>
+          <div class="tab-content bg-light border shadow-sm rounded-bottom px-3" id="myPartnersContent">
+            <div class="tab-pane fade show active" id="operator-one" role="tabpanel" aria-labelledby="operator-one-tab">
+              <div class="brands-grid">
+                <div class="row justify-content-center">
+                  <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-1.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-2.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-3.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-4.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-5.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-6.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-7.png" alt="Brands"></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="operator-two" role="tabpanel" aria-labelledby="operator-two-tab">
+              <div class="brands-grid">
+                <div class="row justify-content-center">
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-1.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-2.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-3.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-4.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-5.png" alt="Brands"></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="operator-three" role="tabpanel" aria-labelledby="operator-three-tab">
+              <div class="brands-grid">
+                <div class="row justify-content-center">
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-1.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-2.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-3.png" alt="Brands"></a></div>
+                  <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="images/brands/flights/airlines-4.png" alt="Brands"></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Partners end --> 
+    
+  </div>
+  <!-- Content end --> 
+  
+
+  
+</div>
+
+<!-- <script src="../../assets/js/theme.js"></script> -->
+<!-- <script src="assets/src/myanimation.js"></script> -->

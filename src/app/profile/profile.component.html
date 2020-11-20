@@ -1,0 +1,77 @@
+
+<!-- Preloader -->
+<!-- <div id="preloader">
+  <div data-loader="dual-ring"></div>
+</div> -->
+<!-- Preloader End --> 
+
+<!-- Document Wrapper   
+============================================= -->
+<div id="main-wrapper"> 
+  
+  <!-- Header
+  ============================================= -->
+  
+  <!-- Header end --> 
+  
+  <!-- Page Header
+    ============================================= -->
+  <section class="page-header page-header-text-light bg-secondary">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1>My Profile</h1>
+        </div>
+        <div class="col-md-4">
+          <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+            <li><a href="index.html">Home</a></li>
+            <li class="active">My Profile</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header end --> 
+  
+  <!-- Content
+  ============================================= -->
+  <div id="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3"> 
+          <!-- Nav Link
+          ============================================= -->
+          <ul class="nav nav-pills alternate flex-lg-column sticky-top">
+            <li class="nav-item" [routerLink]="['/profile/Personal-Information']"><a class="nav-link " [ngClass]="this.navigateTab=='Personal-Information'?'active':''" ><i class="fas fa-user"></i>Personal Information</a></li>
+            <li class="nav-item"  [routerLink]="['/profile/Favourites']"><a class="nav-link" [ngClass]="this.navigateTab=='Favourites'?'active':''"><i class="fas fa-bookmark"></i>Favourites</a></li>
+            <li class="nav-item" [routerLink]="['/profile/Orders-History']"><a class="nav-link" [ngClass]="this.navigateTab=='Orders-History'?'active':''"><i class="fas fa-history"></i>Orders History</a></li>
+            <!-- <li class="nav-item" ><a class="nav-link"  ><i class="fas fa-credit-card"></i>Credit or Debit Cards</a></li> -->
+            <li class="nav-item" [routerLink]="['/profile/Change-Password']" ><a class="nav-link" [ngClass]="this.navigateTab=='Change-Password'?'active':''" ><i class="fas fa-key"></i>Change Password</a></li>
+            <!-- <li class="nav-item" ><a class="nav-link" ><i class="fas fa-bell"></i>Notifications</a></li> -->
+          </ul>
+          <!-- Nav Link end -->
+        </div>
+        <div class="col-lg-9">
+          <app-personal-information *ngIf="this.navigateTab=='Personal-Information'"></app-personal-information>
+          <app-favourites *ngIf="this.navigateTab=='Favourites'"></app-favourites>
+          <app-orders-history *ngIf="this.navigateTab=='Orders-History'"></app-orders-history>
+        <app-update-password *ngIf="this.navigateTab=='Change-Password'"></app-update-password>
+       
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Content end --> 
+  
+  
+  
+</div>
+<!-- Document Wrapper end --> 
+
+<!-- Back to Top
+============================================= --> 
+<a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a> 
+
+ 
+<!-- </body> -->
+

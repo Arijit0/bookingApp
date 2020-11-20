@@ -1,0 +1,93 @@
+<div id="main-wrapper"> 
+<header id="header" class="" [ngClass]="homepage?'bg-transparent header-text-light':''" >
+    <div class="" [ngClass]="homepage?'container-fluid':'container'">
+      <div class="header-row">
+        <div class="header-column justify-content-start"> 
+          
+          <!-- Logo serialNo
+          ============================================= --> 
+          <div class="logo"> <a routerLink="/" title="Quickai - HTML Template"><img src="assets/images/bookcheap.png" alt="Quickai"  height="40" /></a> </div>
+          <!-- Logo end --> 
+          
+        </div>
+        <div class="header-column justify-content-end"> 
+          
+          <!-- Primary Navigation
+          ============================================= -->
+          <nav class="primary-menu navbar navbar-expand-lg">
+            <div id="header-nav" class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="dropdown " > <a class="dropdown-toggle" routerLink="/flight">Flight</a> 
+                            </li>
+                <li class="dropdown"> <a class="dropdown-toggle" routerLink="/hotel">Hotel</a>
+                            </li>
+                <li class="dropdown dropdown-mega"> <a class="dropdown-toggle" href="#">Inspire</a>
+                    </li>
+                <li class="dropdown"> <a class="dropdown-toggle" href="#">Support</a>
+                    </li>
+                <li class="dropdown"> <a class="dropdown-toggle" href="#">Contact</a>
+                </li>
+
+
+                <li class="login-signup ml-lg-2" *ngIf="!isLogin"><a class="pl-lg-4 pr-0" data-toggle="modal" data-target="#login-signup" href="#" title="Login / Sign up">Login / Sign up <span class="d-none d-lg-inline-block"><i class="fas fa-user"></i></span></a></li> 
+
+                <li class="login-signup ml-lg-2 dropdown active" *ngIf="isLogin">
+                  <a class="pl-lg-4 pr-0 dropdown-toggle" href="#">My Profile <span class="d-none d-lg-inline-block"><i class="fas fa-user"></i></span></a>
+                    <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="" [routerLink]="['/profile/Personal-Information']" >Personal Information</a></li>
+                          <li><a class="dropdown-item" href="profile-favourites.html">Favourites</a></li>
+                          <li><a class="dropdown-item" href="profile-cards.html">Credit or Debit Cards</a></li>
+                          <li><a class="dropdown-item" href="profile-notifications.html">Notifications</a></li>
+                          <li><a class="dropdown-item" href="" [routerLink]="['/profile/Orders-History']">Orders History</a></li>
+                          <li><a class="dropdown-item" href="profile-password.html">Change Password</a></li>
+                          <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
+                        </ul>
+                  </li>
+
+
+
+                    <!-- <li class="change-language ml-lg-2"><a class="pl-lg-4 pr-0" data-toggle="modal" data-target="#change-language" href="#" title="Change Language"><span class="d-none d-lg-inline-block">
+                      <i class="fas fa-globe"></i></span></a></li>  -->
+
+                      
+
+                     
+
+              </ul>
+            </div>
+          </nav>
+          <!-- Primary Navigation end --> 
+          
+        </div>
+
+        <div id="status"></div> 
+        
+        <!-- Collapse Button
+        ============================================= -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav"> <span></span> <span></span> <span></span> </button>
+      </div>
+    </div>
+  </header>
+
+   <!-- Login/ SignUp Popup -->
+
+  <div id="login-signup" class="modal fade" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content p-sm-3">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                  
+          <app-login-signup-panel (reply)='OnApplyFilter($event)' pageFrom="inpopup" ></app-login-signup-panel>
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+    <!-- Login/ SignUp Popup -->
+
+
+    
+
+
+</div>

@@ -1,0 +1,197 @@
+<!-- Preloader -->
+<div id="preloader" *ngIf="loaderShow"><div data-loader="dual-ring"></div></div>
+<!-- Preloader End -->
+
+<!-- Document Wrapper   
+============================================= -->
+<div id="main-wrapper">
+
+
+  
+  	<!-- Page Header
+    ============================================= -->
+    <section class="page-header page-header-text-light bg-secondary">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1>Payment</h1>
+          </div>
+          <div class="col-md-4">
+            <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+              <li><a href="index.html">Home</a></li>
+              <li class="active">Payment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section><!-- Page Header end -->
+    
+  <!-- Content
+  ============================================= -->
+  <div id="content">
+    <div class="container">
+      <div class="bg-light shadow-md rounded">
+        <div class="row align-items-center p-4">
+          <div class="col-md-6">
+            <h2 class="text-primary d-flex align-items-center m-0"><span class="text-3 text-dark mr-1">Total Payable Amount: </span>{{currency}} {{numberWithCommas(flightDetails.AirItineraryPricingInfo.ItinTotalFare.TotalFare_curr)}} </h2>
+          </div>
+          <div class="col-md-6">
+            <p class="text-md-right pb-0 mb-0">Time Remaining: 
+              <!-- <countdown [config]="{ leftTime: config, format: 'mm:ss' }"></countdown> -->
+              <span id="time" class="text-primary">00:00</span>
+            </p>
+          </div>
+        </div>
+        <hr class="m-0">
+        <div class="p-4">
+          <h3 class="text-6 mb-4">How would you like to pay?</h3>
+          <div class="row">
+            <div class="col-md-4 col-lg-3">
+              <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+                <li class="nav-item" *ngFor="let paymentOption of paymentOptionList; let i = index;"> 
+                    <a class="nav-link" [ngClass]="i==0?'active':''" [id]="paymentOption.title" data-toggle="tab" href="#{{paymentOption.name}}" role="tab" aria-controls="{{paymentOption.name}}" >
+                         {{payLang[paymentOption.title]}}
+                    </a> 
+                </li>
+               </ul>
+            </div>
+            <div class="col-md-8 col-lg-9">
+              <div class="tab-content my-3" id="myTabContentVertical">
+                <div class="tab-pane fade" [ngClass]="i==0?'active show':''" *ngFor="let paymentOption of paymentOptionList; let i = index;" [id]="paymentOption.name" role="tabpanel" aria-labelledby="{{paymentOption.title}}" >
+                    <div class="row">
+                      <div class="col-md-8"> <img class="img-fluid" [src]="paymentOption.logo" alt="{{paymentOption.name}} Logo" title="Pay easily, fast and secure with PayPal.">
+                        <p class="lead">{{payLang[paymentOption.subtitle]}}</p>
+                        <p class="text-info mb-4"><i class="fas fa-info-circle"></i>{{payLang[paymentOption.header]}}</p>
+                        <p class="text mb-4">{{payLang[paymentOption.details]}}</p>
+                        <button class="btn btn-primary d-flex align-items-center" type="button" (click)="paymentSubmit(paymentOption)"> Pay via {{paymentOption.showname}}</button>
+                      </div>
+                      <div class="col-md-4 mt-md-0 mt-4">
+                        <div class="bg-light-2 p-3">
+                          <!-- <p class="mb-2">We value your Privacy.</p>
+                          <p class="text-1 mb-0">We will not sell or distribute your contact information. Read our <a href="#">Privacy Policy</a>.</p>
+                          <hr>
+                          <p class="mb-2">Billing Enquiries</p>
+                          <p class="text-1 mb-0">Do not hesitate to reach our <a href="#">support team</a> if you have any queries.</p> -->
+                          <p ng-bind-html="AGREEMENT_MSG" class="font-weight-600 ng-binding">* By clicking, Continue Booking you agree to the <a href="https://bookcheap.com.au/account/terms-and-conditions/" target="_blank">Terms &amp; Conditions</a>, <a href="https://bookcheap.com.au/account/refund-policy/" target="_blank">Refund policy</a> and the <a href="https://bookcheap.com.au/account/privacy-policy/" target="_blank">Privacy Policy.</a></p>
+                          <hr>
+                          <p ng-bind-html="TRAN_MSG" class="font-weight-600 ng-binding">* All transactions are processed in Australian dollars. Your transaction of <a href="#">{{currency}} {{numberWithCommas(flightDetails.AirItineraryPricingInfo.ItinTotalFare.TotalFare_curr)}} </a> = <a href="#">AUD {{numberWithCommas(flightDetails.AirItineraryPricingInfo.ItinTotalFare.TotalFare)}} </a>.</p>
+                          <hr>
+                          <p ng-bind-html="FIRST_DATA_MSG" class="font-weight-600 ng-binding">* You will be redirected to <a href="#">Secure Payment Gateway</a> Page to process secure credit card transaction.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- errorModal (Modal Dialog)
+                    =============================================   eachFlight.ArrivalAirportLocationCode?airportList[eachFlight.ArrivalAirportLocationCode].ct:'' -->
+                    <div id="errorModal" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static">
+                      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">!Oops</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                          </div>
+                          <div class="modal-body">
+                            <div *ngIf="bookingErrors">
+                              <h1 *ngFor="let bookingError of bookingErrors">{{bookingError.Message}}</h1>
+                              
+                            </div>
+                          </div>
+                          
+                            <div class="modal-footer" *ngIf="bookingErrors">
+                              <button class="btn btn-secondary" type="button" (click)="backToFlightResult()">Go back to flight result</button>
+                            </div>
+                          
+                        </div>
+                      </div>
+                    </div><!-- errorModal end -->
+  </div><!-- Content end -->
+  
+  <form method="post" name="frmFirstDate" #frmFirstDate ngNoForm [action]="formFields.FirstPaymentUrl">
+    <input type="hidden" name="txntype" value="sale">
+    <input type="hidden" name="timezone" value="{{formFields.TimeZone}}"/>
+    <input type="hidden" name="txndatetime" value="{{formFields.txnDateTime}}"/>
+    <input type="hidden" name="hash_algorithm" value="SHA256"/>
+    <input type="hidden" name="hash" value="{{formFields.HashCode}}"/>
+    <input type="hidden" name="storename" value="{{formFields.Storename}}"/>
+    <input type="hidden" name="mode" value="PayOnly"/>
+    <input type="hidden" name="language" value="en_EN"/>
+    <!-- <input type="hidden" name="paymentMethod" value="{{CardTypeValue}}"> -->
+    <input type="hidden" name="chargetotal" value="{{formFields.total}}"/>
+    <input type="hidden" name="oid" class="custom" value="{{formFields.bookingID}}">
+    <input type="hidden" name="currency" value="{{formFields.Currencies}}"/>
+    <input type="hidden" name="targetURL" value="{{formFields.commonUrl}}/FlightRestApi/bookingReturn/{{formFields.domainId}}/{{formFields.hash}}"/>
+    <input type="hidden" name="responseSuccessURL" value="{{formFields.mainUrl}}flight-itinerary/{{formFields.hash}}"/>
+    <input type="hidden" name="responseFailURL" value="{{formFields.commonUrl}}/FlightRestApi/bookingReturn/{{formFields.domainId}}/{{formFields.hash}}"/>
+    <input type="hidden" name="transactionNotificationURL" value="{{formFields.commonUrl}}/flightRestApi/confirmation_fd"/>
+    <input type="submit" value="Submit" id="frmFirstDateSubmit" style="display: none;">
+ </form>
+ <form method="post" name="frmWireCard" #frmWireCard ngNoForm [action]="formFields.WirecardPaymentUrl">
+    <input type="hidden" name="requested_amount" value="{{formFields.total}}"/>
+    <input type="hidden" name="requested_amount_currency" value="{{formFields.Currencies}}"/>
+    <input type="hidden" name="locale" value="{{formFields.selectedlang}}"/>
+    <input type="hidden" name="order_number" class="custom" value="{{formFields.bookingID}}">
+    <input type="hidden" name="order_detail" value="{{formFields.Storename}}"/>
+    <input type="hidden" name="request_id" value="{{formFields.domainId}}{{formFields.bookingID}}"/>
+    <input type="hidden" name="first_name" value="{{formFields.adult_fname}}"/>
+    <input type="hidden" name="last_name" value="{{formFields.adult_lname}}"/>
+    <input type="hidden" name="request_time_stamp" value="{{formFields.request_time_stamp}}"/>
+    <input type="hidden" name="merchant_account_id" value="{{formFields.merchant_account_id}}"/>
+    <input type="hidden" name="payment_method" value="{{formFields.payment_method_opt}}">
+    <input type="hidden" name="transaction_type" value="{{formFields.transaction_type_opt}}"/>
+    <input type="hidden" name="redirect_url" value="{{formFields.mainUrl}}flight-itinerary/{{formFields.hash}}"/>
+    <input type="hidden" name="ip_address" value="{{formFields.ip_address}}"/>
+    <input type="hidden" name="request_signature" value="{{formFields.request_signature}}"/>
+    <input type="hidden" name="psp_name" value="{{formFields.Storename}}"/>
+    <input type="hidden" name="attempt_three_d" value="true"/>
+    <!-- <input type="hidden" name="paymentMethod" value="{{CardTypeValue}}"> -->
+    <input type="hidden" name="notification_url" value="{{formFields.commonUrl}}/flightRestApi/confirmation_wc"/>
+    <!-- <input type="hidden" name="notification_url_1" value="{{commonUrl}}flightRestApi/confirmation_wc"/>
+       <input type="hidden" name="notification_url_2" value="{{commonUrl}}flightRestApi/confirmation_wc"/>
+       <input type="hidden" name="notification_transaction_state_1" value="success"/>
+       <input type="hidden" name="notification_transaction_state_2" value="fail"/> -->
+    <input type="hidden" name="notification_transaction_state" value=""/>
+    <input type="hidden" name="success_redirect_url" value="{{formFields.mainUrl}}flight-itinerary/{{formFields.hash}}"/>
+    <input type="hidden" name="fail_redirect_url" value="{{formFields.commonUrl}}/flightRestApi/bookingReturn/{{formFields.domainId}}/{{formFields.hash}}"/>
+    <input type="hidden" name="cancel_redirect_url" value="{{formFields.commonUrl}}/flightRestApi/bookingReturn/{{formFields.domainId}}/{formFields.{hash}}"/>
+    <input type="hidden" name="processing_redirect_url" value="{{formFields.commonUrl}}/flightRestApi/confirmation_wc"/>
+    <input type="submit" value="Submit" id="frmWireCardSubmit"  style="display: none;">
+ </form>
+ <form method="post" name="frmPaypal" #frmPaypal ngNoForm [action]="formFields.PaypalPaymentUrl">
+    <input type="hidden" name="cmd" value="_xclick" id="frmPaypal">
+    <input type="hidden" name="business" value="{{formFields.business}}">
+    <input type="hidden" name="currency_code" value="{{formFields.Currencies}}">
+    <input type="hidden" name="item_name" value="Travel">
+    <input type="hidden" name="lc" value="{{formFields.selectedlang | uppercase}}"/>
+    <input type="hidden" name="amount" value="{{formFields.total}}">
+    <input type="hidden" name="tax" value="0">
+    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="email" id="user_email_address" value="{{formFields.Email}}">
+    <input type="hidden" name="custom" id="order_custom_id" value="{{formFields.bookingID}}">
+    <input type="hidden" name="return" value="{{formFields.mainUrl}}flight-itinerary/{{formFields.hash}}"/>
+    <input type="hidden" name="cancel_return" value="{{formFields.commonUrl}}/flightRestApi/bookingReturn/{{formFields.domainId}}/{{formFields.hash}}">
+    <input type="hidden" name="notify_url" value="{{formFields.commonUrl}}/flightRestApi/confirmation_paypal">
+    <input type="submit" value="Submit" id="frmPaypalSubmit"  style="display: none;">
+ </form>
+ <form method="post" name="frmPoli" #frmPoli ngNoForm [action]="formFields.PoliPaymentUrl">
+    <input type="hidden" name="currency_code" value="{{formFields.Currencies}}">
+    <input type="hidden" name="item_name" value="Travel">
+    <input type="hidden" name="amount" value="{{formFields.total}}">
+    <input type="hidden" name="tax" value="0">
+    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="email" id="user_email_address" value="{{formFields.Email}}">
+    <input type="hidden" name="custom" id="order_custom_id" value="{{formFields.bookingID}}">
+    <input type="hidden" name="return" value="{{formFields.mainUrl}}flight-itinerary/{{formFields.hash}}"/>
+    <input type="hidden" name="MerchantHomepageURL" value="{{formFields.mainUrl}}"/>
+    <input type="hidden" name="cancel_return" value="{{formFields.commonUrl}}/flightRestApi/bookingReturn/{{formFields.domainId}}/{{formFields.hash}}">
+    <input type="hidden" name="notify_url" value="{{formFields.commonUrl}}/flightRestApi/confirmation_poli">
+    <input type="submit" value="Submit" id="frmPoliSubmit"  style="display: none;">
+ </form>
+  
+</div><!-- Document Wrapper end -->

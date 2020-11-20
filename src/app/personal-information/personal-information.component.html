@@ -1,0 +1,182 @@
+<!-- Preloader -->
+<div id="preloader" *ngIf="loaderShow"><div data-loader="dual-ring"></div></div>
+<!-- Preloader End -->
+
+<div class="bg-light shadow-md rounded p-4"> 
+    <!-- Personal Information
+  ============================================= -->
+    <div class="row">
+      <div class="col-lg-8">
+        <h4 class="mb-4">General Information</h4>
+        <hr>
+        <form id="personalInformation" method="post">
+          <div class="mb-3">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="male" name="profile" class="custom-control-input" value="M" 
+              [(ngModel)]="profileJson.gender" required type="radio">
+              <label class="custom-control-label" for="male">Male</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="female" name="profile" class="custom-control-input" value="F" 
+              [(ngModel)]="profileJson.gender" required type="radio">
+              <label class="custom-control-label" for="female">Female</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="first name">First Name</label>
+            <input type="text" [(ngModel)]="profileJson.firstName" name="firstName" class="form-control" data-bv-field="firstName" id="firstName" required placeholder="First Name">
+          </div>
+
+          <div class="form-group">
+            <label for="last name">Last Name</label>
+            <input type="text" [(ngModel)]="profileJson.lastName" name="lastName" class="form-control" data-bv-field="lastName" id="lastName" required placeholder="Last Name">
+          </div>
+
+          <div class="form-group">
+            <label for="last name">Date of Birth</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.DOB" name="date_of_birth" data-bv-field="lastName" id="date_of_birth" required placeholder="Date of Birth" autofill="off" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="emailID">Email ID</label> 
+            <input type="email" [(ngModel)]="profileJson.email" name="emailID" class="form-control" data-bv-field="emailid" id="emailID" required placeholder="Email ID">
+          </div>
+
+          <div class="form-group">
+            <label for="mealPreference">Meals Preferences</label>
+            <select class="custom-select" id="mealPreference" name="mealPref" [(ngModel)]="profileJson.mealPref">
+              <option value=""> --- Please Select --- </option>
+              <option value="Any">Any</option>
+              <option value="AVML">Vegetarian Meal(AVML)</option>
+              <option value="BBML">BabyInfant Meal(BBML)</option>
+              <option value="BLML">Bland Meal(BLML)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="seatPreference">Seat Preferences</label>
+            <select class="custom-select" id="seatPreference" name="seatPref" [(ngModel)]="profileJson.seatPref">
+              <option value=""> --- Please Select --- </option>
+              <option value="Any">Aisle</option>
+              <option value="W">Window</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Frequent Flyer No</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.freqFlyNo" name="freqFlyNo" data-bv-field="Frequent_Flyer_No" id="frequentFlyerNo" required placeholder="Frequent Flyer No">
+          </div>
+          <hr>
+          <h4 class="mb-4">Contact Information</h4>
+          <hr>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Mobile No</label>
+            <input type="number" class="form-control" [(ngModel)]="profileJson.mobileNo" name="mobileNo" data-bv-field="mobileNo" id="mobileNo" required placeholder="Mobile No">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Residency</label>
+            <input type="text"
+             class="form-control" 
+             name="residency{{randomKey}}" 
+             [(ngModel)]="profileJson.residency"
+              data-bv-field="residency" 
+              id="residency{{randomKey}}" 
+              (mouseup)="$event.target.select()"
+              required placeholder="Residency"
+              autofill="off"
+              autocomplete="off">
+          </div>
+          <hr>
+          <h4 class="mb-4">Passport Information</h4>
+          <hr>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Nationality</label>
+            <input type="text"
+             class="form-control"
+              
+              name="nationality{{randomKey}}" 
+              data-bv-field="nationality"
+               id="nationality{{randomKey}}" 
+               [(ngModel)]="profileJson.nationality"
+               (mouseup)="$event.target.select()"
+               required placeholder="Nationality"
+               autofill="off"
+               autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Issue Country</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.issueCountry" name="issueCountry{{randomKey}}" data-bv-field="Issue Country" id="issueCountry{{randomKey}}" (mouseup)="$event.target.select()" required placeholder="Issue Country"
+             autofill="off"
+               autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Passport No</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.passportNo" name="passportNo" data-bv-field="passportNo" id="passportNo" required placeholder="Passport No">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Passport Expired On</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.passportExpireOn" name="passportExpiredOn" data-bv-field="Passport Expired On" id="passportExpiredOn" required placeholder="Passport Expired On">
+          </div>
+          <hr>
+          <h4 class="mb-4">Address Details</h4>
+          <hr>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Address 1</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.address1" name="address1" data-bv-field="address1" id="address1" required placeholder="Address 1">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Address 2</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.address2" name="address2" data-bv-field="address2" id="address2" required placeholder="Address 2">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">City</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.city" data-bv-field="city" name="city" id="city" required placeholder="City">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">State</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.state" name="state" data-bv-field="State" id="state" required placeholder="State">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Zipcode</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.zipcode" data-bv-field="Zipcode" id="zipcode" name="zipcode" required placeholder="Zipcode">
+          </div>
+          <div class="form-group">
+            <label for="Frequent_Flyer_No">Country</label>
+            <input type="text" class="form-control" [(ngModel)]="profileJson.country" (mouseup)="$event.target.select()" data-bv-field="Country" id="Country{{randomKey}}" name="Country{{randomKey}}" required placeholder="Country"
+            autofill="off"
+            autocomplete="off">
+          </div>
+          <hr>
+          <button class="btn btn-primary" type="submit" (click)="updateUserDetl()">Update Now</button>
+        </form>
+      </div>
+      <div class="col-lg-4 mt-4 mt-lg-0 ">
+        <div class="bg-light-2 p-3">
+          <p class="mb-2">We value your Privacy.</p>
+          <p class="text-1 mb-0">We will not sell or distribute your contact information. Read our <a href="#">Privacy Policy</a>.</p>
+          <hr>
+          <p class="mb-2">Billing Enquiries</p>
+          <p class="text-1 mb-0">Do not hesitate to reach our <a href="#">support team</a> if you have any queries.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Personal Information end --> 
+  </div>
+
+<script>
+$(function() {
+ 'use strict';
+  // Birth Date
+  $('#birthDate').daterangepicker({
+	singleDatePicker: true,
+	"showDropdowns": true,
+	autoUpdateInput: false,
+	maxDate: moment().add(0, 'days'),
+	}, function(chosen_date) {
+  $('#birthDate').val(chosen_date.format('MM-DD-YYYY'));
+  });
+  });
+</script> 
+<!-- </body> -->
+

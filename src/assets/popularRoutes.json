@@ -1,0 +1,118 @@
+{
+    "popularHotels":{
+        
+            "leftSide":[
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                },
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                },
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                },
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                },
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                }
+                
+            ],
+            "rightSide":[
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                },
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                },
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                },
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                },
+                {
+                    "LocationId": 17144,
+                    "Location" : "New York",
+                    "Count": 5000
+                }
+            ]
+        },
+    
+    "popularFlights":{
+        
+        "leftSide":[
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            },
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            },
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            },
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            },
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            }
+        ],
+        "rightSide":[
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            },
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            },
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            },
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            },
+            {
+                "From": "BKK",
+                "To": "CAI",
+                "Title": "Bangkok To Cairo"
+            }
+        ]
+    }
+}

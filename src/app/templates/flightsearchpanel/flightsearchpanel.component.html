@@ -1,0 +1,678 @@
+<form id="bookingFlight" method="post" name="flightresult" *ngIf="!homepage">
+  <div class="mb-3">
+    <div class="custom-control custom-radio custom-control-inline">
+      <input
+        id="oneway"
+        name="flight-trip"
+        class="custom-control-input"
+        value="oneWay"
+        [(ngModel)]="tripType"
+        required
+        type="radio"
+      />
+      <label class="custom-control-label" for="oneway">One Way</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+      <input
+        id="roundtrip"
+        name="flight-trip"
+        class="custom-control-input"
+        value="round"
+        [(ngModel)]="tripType"
+        checked
+        required
+        type="radio"
+      />
+      <label class="custom-control-label" for="roundtrip">Round Trip</label>
+    </div>
+  </div>
+  <div class="form-row">
+    <div
+      class="col-md-4 form-group"
+      [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+    >
+      <input
+        type="text"
+        class="form-control flightFrom"
+        id="flightFrom"
+        [(ngModel)]="flightFrom"
+        name="flightFrom"
+        (mouseup)="$event.target.select()"
+        required
+        placeholder="From"
+        autofill="off"
+        autocomplete="off"
+      />
+      <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
+    </div>
+    <div
+      class="col-md-4 form-group"
+      [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+    >
+      <input
+        type="text"
+        class="form-control flightTo"
+        id="flightTo"
+        [(ngModel)]="flightTo"
+        name="flightTo"
+        (mouseup)="$event.target.select()"
+        required
+        placeholder="To"
+        autofill="off"
+        autocomplete="off"
+      />
+      <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
+    </div>
+    <div
+      class="col-md-4 form-group"
+      [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+    >
+      <input
+        id="flightDepart"
+        type="text"
+        class="form-control"
+        [(ngModel)]="departDate"
+        name="departDate"
+        required
+        placeholder="Depart Date"
+        autofill="off"
+        autocomplete="off"
+      />
+      <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
+    </div>
+    <div
+      class="col-md-4 form-group col-lg-2"
+      [ngClass]="tripType == 'round' ? '' : 'd-none'"
+    >
+      <input
+        id="flightReturn"
+        type="text"
+        class="form-control"
+        [(ngModel)]="returnDate"
+        name="returnDate"
+        required
+        placeholder="Return Date"
+        autofill="off"
+        autocomplete="off"
+      />
+      <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
+    </div>
+    <div
+      class="col-md-4 travellers-class form-group"
+      [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+    >
+      <input
+        type="text"
+        id="flightTravellersClass"
+        class="travellers-class-input form-control"
+        name="flight-travellers-class"
+        placeholder="Travellers, Class"
+        [(ngModel)]="flightTravellers"
+        readonly
+        required
+        onkeypress="return false;"
+        autofill="off"
+        autocomplete="off"
+      />
+      <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+      <div class="travellers-dropdown">
+        <div class="row align-items-center">
+          <div class="col-sm-6">
+            <p class="mb-sm-0">
+              Adults <small class="text-muted">(12+ yrs)</small>
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button
+                  type="button"
+                  class="btn bg-light-4"
+                  data-value="decrease"
+                  data-target="#flightAdult-travellers"
+                  data-toggle="spinner"
+                  (click)="flightIncDec('adult', 'minus')"
+                >
+                  -
+                </button>
+              </div>
+              <input
+                type="text"
+                data-ride="spinner"
+                id="flightAdult-travellers"
+                [value]="adultCount"
+                class="qty-spinner form-control"
+                readonly
+              />
+              <div class="input-group-append" autofill="off" autocomplete="off">
+                <button
+                  type="button"
+                  class="btn bg-light-4"
+                  data-value="increase"
+                  data-target="#flightAdult-travellers"
+                  data-toggle="spinner"
+                  (click)="flightIncDec('adult', 'plus')"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-2" />
+        <div class="row align-items-center">
+          <div class="col-sm-6">
+            <p class="mb-sm-0">
+              Children <small class="text-muted">(2-12 yrs)</small>
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button
+                  type="button"
+                  class="btn bg-light-4"
+                  data-value="decrease"
+                  data-target="#flightChildren-travellers"
+                  data-toggle="spinner"
+                  (click)="flightIncDec('child', 'minus')"
+                >
+                  -
+                </button>
+              </div>
+              <input
+                type="text"
+                data-ride="spinner"
+                id="flightChildren-travellers"
+                class="qty-spinner form-control"
+                [value]="childCount"
+                readonly
+                autofill="off"
+                autocomplete="off"
+              />
+              <div class="input-group-append">
+                <button
+                  type="button"
+                  class="btn bg-light-4"
+                  data-value="increase"
+                  data-target="#flightChildren-travellers"
+                  data-toggle="spinner"
+                  (click)="flightIncDec('child', 'plus')"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-2" />
+        <div class="row align-items-center">
+          <div class="col-sm-6">
+            <p class="mb-sm-0">
+              Infants <small class="text-muted">(Below 2 yrs)</small>
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button
+                  type="button"
+                  class="btn bg-light-4"
+                  data-value="decrease"
+                  data-target="#flightInfants-travellers"
+                  data-toggle="spinner"
+                  (click)="flightIncDec('infant', 'minus')"
+                >
+                  -
+                </button>
+              </div>
+              <input
+                type="text"
+                data-ride="spinner"
+                id="flightInfants-travellers"
+                class="qty-spinner form-control"
+                [value]="infantCount"
+                readonly
+                autofill="off"
+                autocomplete="off"
+              />
+              <div class="input-group-append">
+                <button
+                  type="button"
+                  class="btn bg-light-4"
+                  data-value="increase"
+                  data-target="#flightInfants-travellers"
+                  data-toggle="spinner"
+                  (click)="flightIncDec('infant', 'plus')"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mt-2" />
+        <div class="mb-3">
+          <div class="custom-control custom-radio">
+            <input
+              id="flightClassEconomic"
+              name="flight-class"
+              class="flight-class custom-control-input"
+              value="Y"
+              [(ngModel)]="flightTypeCheck"
+              checked=""
+              required
+              type="radio"
+            />
+            <label class="custom-control-label" for="flightClassEconomic"
+              >Economic</label
+            >
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              id="flightClassPremiumEconomic"
+              name="flight-class"
+              class="flight-class custom-control-input"
+              value="S"
+              [(ngModel)]="flightTypeCheck"
+              required
+              type="radio"
+            />
+            <label class="custom-control-label" for="flightClassPremiumEconomic"
+              >Premium Economic</label
+            >
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              id="flightClassBusiness"
+              name="flight-class"
+              class="flight-class custom-control-input"
+              value="C"
+              [(ngModel)]="flightTypeCheck"
+              required
+              type="radio"
+            />
+            <label class="custom-control-label" for="flightClassBusiness"
+              >Business</label
+            >
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              id="flightClassFirstClass"
+              name="flight-class"
+              class="flight-class custom-control-input"
+              value="F"
+              [(ngModel)]="flightTypeCheck"
+              required
+              type="radio"
+            />
+            <label class="custom-control-label" for="flightClassFirstClass"
+              >First Class</label
+            >
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block submit-done" type="button">
+          Done
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-2 form-group">
+      <button
+        class="btn btn-primary btn-block"
+        type="submit"
+        (click)="flightSearch()"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+</form>
+
+<form id="bookingFlight" method="post" name="home" *ngIf="homepage">
+  <div class="row">
+    <div class="col-12 order-lg-12 text-light mb-3 mb-lg-0">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input
+          id="oneway"
+          name="flight-trip"
+          class="custom-control-input"
+          value="oneWay"
+          [(ngModel)]="tripType"
+          required
+          type="radio"
+        />
+        <label class="custom-control-label" for="oneway">One Way</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input
+          id="roundtrip"
+          name="flight-trip"
+          class="custom-control-input"
+          value="round"
+          [(ngModel)]="tripType"
+          required
+          type="radio"
+        />
+        <label class="custom-control-label" for="roundtrip">Round Trip</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input
+          id="multiCity"
+          name="flight-trip"
+          class="custom-control-input"
+          value="multi"
+          [(ngModel)]="tripType"
+          required
+          type="radio"
+        />
+        <label class="custom-control-label" for="multiCity">Multi City</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="row no-gutters search-input-2">
+        <div
+          class="form-group"
+          [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+        >
+          <input
+            type="text"
+            class="form-control flightFrom"
+            id="flightFrom"
+            [(ngModel)]="flightFrom"
+            name="flightFrom"
+            (mouseup)="$event.target.select()"
+            required
+            placeholder="From"
+            autofill="off"
+            autocomplete="off"
+          />
+          <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
+        </div>
+        <div
+          class="form-group"
+          [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+        >
+          <input
+            type="text"
+            class="form-control flightTo"
+            id="flightTo"
+            [(ngModel)]="flightTo"
+            name="flightTo"
+            (mouseup)="$event.target.select()"
+            required
+            placeholder="To"
+            autofill="off"
+            autocomplete="off"
+          />
+          <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span>
+        </div>
+        <div
+          class="form-group"
+          [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+        >
+          <input
+            id="flightDepart"
+            type="text"
+            class="form-control"
+            [(ngModel)]="departDate"
+            name="departDate"
+            required
+            placeholder="Depart Date"
+            autofill="off"
+            autocomplete="off"
+          />
+          <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
+        </div>
+        <div
+          class="form-group"
+          [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+          *ngIf="tripType == 'round'"
+        >
+          <input
+            id="flightReturn"
+            type="text"
+            class="form-control"
+            [(ngModel)]="returnDate"
+            name="returnDate"
+            required
+            placeholder="Return Date"
+            autofill="off"
+            autocomplete="off"
+          />
+          <span class="icon-inside"><i class="far fa-calendar-alt"></i></span>
+        </div>
+        <div
+          class="travellers-class form-group"
+          [ngClass]="tripType == 'round' ? 'col-lg-2' : 'col-lg'"
+        >
+          <input
+            type="text"
+            id="flightTravellersClass"
+            class="travellers-class-input form-control"
+            name="flight-travellers-class"
+            placeholder="Travellers, Class"
+            [(ngModel)]="flightTravellers"
+            readonly
+            required
+            onkeypress="return false;"
+            autofill="off"
+            autocomplete="off"
+          />
+          <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+          <div class="travellers-dropdown">
+            <div class="row align-items-center">
+              <div class="col-sm-6">
+                <p class="mb-sm-0">
+                  Adults <small class="text-muted">(12+ yrs)</small>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <div class="qty input-group">
+                  <div class="input-group-prepend">
+                    <button
+                      type="button"
+                      class="btn bg-light-4"
+                      data-value="decrease"
+                      data-target="#flightAdult-travellers"
+                      data-toggle="spinner"
+                      (click)="flightIncDec('adult', 'minus')"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    data-ride="spinner"
+                    id="flightAdult-travellers"
+                    class="qty-spinner form-control"
+                    [value]="adultCount"
+                    readonly
+                    autofill="off"
+                    autocomplete="off"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      type="button"
+                      class="btn bg-light-4"
+                      data-value="increase"
+                      data-target="#flightAdult-travellers"
+                      data-toggle="spinner"
+                      (click)="flightIncDec('adult', 'plus')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-2" />
+            <div class="row align-items-center">
+              <div class="col-sm-6">
+                <p class="mb-sm-0">
+                  Children <small class="text-muted">(2-12 yrs)</small>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <div class="qty input-group">
+                  <div class="input-group-prepend">
+                    <button
+                      type="button"
+                      class="btn bg-light-4"
+                      data-value="decrease"
+                      data-target="#flightChildren-travellers"
+                      data-toggle="spinner"
+                      (click)="flightIncDec('child', 'minus')"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    data-ride="spinner"
+                    id="flightChildren-travellers"
+                    class="qty-spinner form-control"
+                    [value]="childCount"
+                    readonly
+                    autofill="off"
+                    autocomplete="off"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      type="button"
+                      class="btn bg-light-4"
+                      data-value="increase"
+                      data-target="#flightChildren-travellers"
+                      data-toggle="spinner"
+                      (click)="flightIncDec('child', 'plus')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-2" />
+            <div class="row align-items-center">
+              <div class="col-sm-6">
+                <p class="mb-sm-0">
+                  Infants <small class="text-muted">(Below 2 yrs)</small>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <div class="qty input-group">
+                  <div class="input-group-prepend">
+                    <button
+                      type="button"
+                      class="btn bg-light-4"
+                      data-value="decrease"
+                      data-target="#flightInfants-travellers"
+                      data-toggle="spinner"
+                      (click)="flightIncDec('infant', 'minus')"
+                    >
+                      -
+                    </button>
+                  </div>
+                  <input
+                    type="text"
+                    data-ride="spinner"
+                    id="flightInfants-travellers"
+                    class="qty-spinner form-control"
+                    [value]="infantCount"
+                    readonly
+                    autofill="off"
+                    autocomplete="off"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      type="button"
+                      class="btn bg-light-4"
+                      data-value="increase"
+                      data-target="#flightInfants-travellers"
+                      data-toggle="spinner"
+                      (click)="flightIncDec('infant', 'plus')"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="mt-2" />
+            <div class="mb-3">
+              <div class="custom-control custom-radio">
+                <input
+                  id="flightClassEconomic"
+                  name="flight-class"
+                  class="flight-class custom-control-input"
+                  value="Y"
+                  [(ngModel)]="flightTypeCheck"
+                  required
+                  type="radio"
+                />
+                <label class="custom-control-label" for="flightClassEconomic"
+                  >Economic</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  id="flightClassPremiumEconomic"
+                  name="flight-class"
+                  class="flight-class custom-control-input"
+                  value="S"
+                  [(ngModel)]="flightTypeCheck"
+                  required
+                  type="radio"
+                />
+                <label
+                  class="custom-control-label"
+                  for="flightClassPremiumEconomic"
+                  >Premium Economic</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  id="flightClassBusiness"
+                  name="flight-class"
+                  class="flight-class custom-control-input"
+                  value="C"
+                  [(ngModel)]="flightTypeCheck"
+                  required
+                  type="radio"
+                />
+                <label class="custom-control-label" for="flightClassBusiness"
+                  >Business</label
+                >
+              </div>
+              <div class="custom-control custom-radio">
+                <input
+                  id="flightClassFirstClass"
+                  name="flight-class"
+                  class="flight-class custom-control-input"
+                  value="F"
+                  [(ngModel)]="flightTypeCheck"
+                  required
+                  type="radio"
+                />
+                <label class="custom-control-label" for="flightClassFirstClass"
+                  >First Class</label
+                >
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block submit-done" type="button">
+              Done
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-2 form-group">
+          <button
+            class="btn btn-primary btn-block"
+            type="submit"
+            (click)="flightSearch()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

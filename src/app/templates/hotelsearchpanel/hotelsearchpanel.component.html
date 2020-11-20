@@ -1,0 +1,159 @@
+
+<form id="bookingHotels" method="post" name="home" *ngIf="homepage">
+    <div class="row no-gutters search-input-2">                                                                             
+      <div class="col-lg form-group">
+        
+        <input 
+        type="text"
+         class="form-control" 
+         id="hotelsFrom" 
+         [(ngModel)]="hotelsFrom"
+          name='hotelsFrom' 
+          (mouseup)="$event.target.select()"
+          required 
+        placeholder="Enter City">
+
+        <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+      <div class="col-lg form-group">
+        <input id="hotelsCheckIn" type="text" class="form-control" [(ngModel)]="hotelsCheckIn" name='hotelsCheckIn' required placeholder="Check In" autofill="off" autocomplete="off">
+        <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+      <div class="col-lg form-group">
+        <input id="hotelsCheckOut" type="text" class="form-control" [(ngModel)]="hotelsCheckOut" name='hotelsCheckOut' required placeholder="Check Out" autofill="off" autocomplete="off">
+        <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+      <div class="col-lg travellers-class form-group">
+        <input type="text" id="hotelsTravellersClass" class="travellers-class-input form-control" name="hotels-travellers-class" placeholder="Rooms / People" [(ngModel)]="hotelBooking" required onkeypress="return false;" autofill="off" autocomplete="off">
+        <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+        <div class="travellers-dropdown" style="display: none;">
+          <div class="row align-items-center">
+            <div class="col-sm-7">
+              <p class="mb-sm-0">Rooms</p>
+            </div>
+            <div class="col-sm-5">
+              <div class="qty input-group">
+                <div class="input-group-prepend">
+                  <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#hotels-rooms" data-toggle="spinner" (click)="hotelIncDec('room','minus')">-</button>
+                </div>
+                <input type="text" data-ride="spinner" id="hotels-rooms" class="qty-spinner form-control" [value]="roomCount" readonly>
+                <div class="input-group-append">
+                  <button type="button" class="btn bg-light-4" data-value="increase" data-target="#hotels-rooms" data-toggle="spinner" (click)="hotelIncDec('room','plus')">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="mt-2 mb-4">
+          <div class="row align-items-center">
+            <div class="col-sm-7">
+              <p class="mb-sm-0">Adults <small class="text-muted">(12+ yrs)</small></p>
+            </div>
+            <div class="col-sm-5">
+              <div class="qty input-group">
+                <div class="input-group-prepend">
+                  <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#adult-travellers" data-toggle="spinner" (click)="hotelIncDec('adults','minus')">-</button>
+                </div>
+                <input type="text" data-ride="spinner" id="adult-travellers" class="qty-spinner form-control" [value]="adultCount" readonly>
+                <div class="input-group-append">
+                  <button type="button" class="btn bg-light-4" data-value="increase" data-target="#adult-travellers" data-toggle="spinner" (click)="hotelIncDec('adults','plus')">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="my-2">
+          <div class="row align-items-center">
+            <div class="col-sm-7">
+              <p class="mb-sm-0">Children <small class="text-muted">(1-12 yrs)</small></p>
+            </div>
+            <div class="col-sm-5">
+              <div class="qty input-group">
+                <div class="input-group-prepend">
+                  <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#children-travellers" data-toggle="spinner" (click)="hotelIncDec('children','minus')">-</button>
+                </div>
+                <input type="text" data-ride="spinner" id="children-travellers" class="qty-spinner form-control" [value]="childCount" readonly>
+                <div class="input-group-append">
+                  <button type="button" class="btn bg-light-4" data-value="increase" data-target="#children-travellers" data-toggle="spinner" (click)="hotelIncDec('children','plus')">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block submit-done mt-3" type="button">Done</button>
+        </div>
+      </div>
+      <div class="col-lg-2 form-group">
+        <button class="btn btn-primary btn-block" type="submit" (click)="hotelSearch()">Search</button>
+      </div>
+    </div>
+</form>
+
+<form id="bookingHotels" method="post" name="hotelresult" *ngIf="!homepage">
+  <div class="form-row">
+    <div class="col-md-12 col-lg form-group">
+      <input type="text" class="form-control" id="hotelsFrom" [(ngModel)]="hotelsFrom" name='hotelsFrom' (mouseup)="$event.target.select()" required placeholder="Enter City/Hotel">
+      <span class="icon-inside"><i class="fas fa-map-marker-alt"></i></span> </div>
+    <div class="col-md-6 col-lg form-group">
+      <input id="hotelsCheckIn" type="text" class="form-control" [(ngModel)]="hotelsCheckIn" name='hotelsCheckIn' required placeholder="Check In">
+      <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+    <div class="col-md-6 col-lg form-group">
+      <input id="hotelsCheckOut" type="text" class="form-control" [(ngModel)]="hotelsCheckOut" name='hotelsCheckOut' required placeholder="Check Out">
+      <span class="icon-inside"><i class="far fa-calendar-alt"></i></span> </div>
+    <div class="col-md-6 col-lg travellers-class form-group">
+      <input type="text" id="hotelsTravellersClass"  class="travellers-class-input form-control" name="hotels-travellers-class" placeholder="Rooms / People" 
+      [(ngModel)]="hotelBooking" required onkeypress="return false;">
+      <span class="icon-inside"><i class="fas fa-caret-down"></i></span>
+      <div class="travellers-dropdown">
+        <div class="row align-items-center">
+          <div class="col-sm-7">
+            <p class="mb-sm-0">Rooms</p>
+          </div>
+          <div class="col-sm-5">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#hotels-rooms" data-toggle="spinner" (click)="hotelIncDec('room','minus')">-</button>
+              </div>
+              <input type="text" data-ride="spinner" id="hotels-rooms" class="qty-spinner form-control" [value]="roomCount" readonly >
+              <div class="input-group-append">
+                <button type="button" class="btn bg-light-4" data-value="increase" data-target="#hotels-rooms" data-toggle="spinner" (click)="hotelIncDec('room','plus')">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="mt-2 mb-4">
+        <div class="row align-items-center">
+          <div class="col-sm-7">
+            <p class="mb-sm-0">Adults <small class="text-muted">(12+ yrs)</small></p>
+          </div>
+          <div class="col-sm-5">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#adult-travellers" data-toggle="spinner" (click)="hotelIncDec('adults','minus')">-</button>
+              </div>
+              <input type="text" data-ride="spinner" id="adult-travellers" class="qty-spinner form-control" [value]="adultCount" readonly>
+              <div class="input-group-append">
+                <button type="button" class="btn bg-light-4" data-value="increase" data-target="#adult-travellers" data-toggle="spinner" (click)="hotelIncDec('adults','plus')">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-2">
+        <div class="row align-items-center">
+          <div class="col-sm-7">
+            <p class="mb-sm-0">Children <small class="text-muted">(1-12 yrs)</small></p>
+          </div>
+          <div class="col-sm-5">
+            <div class="qty input-group">
+              <div class="input-group-prepend">
+                <button type="button" class="btn bg-light-4" data-value="decrease" data-target="#children-travellers" data-toggle="spinner" (click)="hotelIncDec('children','minus')">-</button>
+              </div>
+              <input type="text" data-ride="spinner" id="children-travellers" class="qty-spinner form-control" [value]="childCount" readonly>
+              <div class="input-group-append">
+                <button type="button" class="btn bg-light-4" data-value="increase" data-target="#children-travellers" data-toggle="spinner" (click)="hotelIncDec('children','plus')">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block submit-done mt-3" type="button">Done</button>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg form-group">
+      <button class="btn btn-primary btn-block" type="submit" (click)="hotelSearch()">Search</button>
+    </div>
+  </div>
+</form>

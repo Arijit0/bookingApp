@@ -1,0 +1,368 @@
+<!-- Preloader -->
+<div id="preloader" *ngIf="loaderShow"><div data-loader="dual-ring"></div></div>
+<!-- Preloader End -->
+
+<!-- Document Wrapper   
+============================================= -->
+<div id="main-wrapper"> 
+  
+  
+  <!-- Page Header
+   ============================================= -->
+  <section class="page-header page-header-text-light bg-secondary">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1 class="text-6 mb-1 d-flex flex-wrap align-items-center">{{hotelName}}
+
+            <span class="ml-2 text-2" data-toggle="tooltip" *ngIf="starRating == '559'" data-original-title="1 Star Hotel"> 
+            <i class="fas fa-star text-warning"></i>
+           </span>
+
+           <span class="ml-2 text-2" data-toggle="tooltip" *ngIf="starRating == '560'" data-original-title="1 Star Hotel"> 
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+           </span>
+
+           <span class="ml-2 text-2" data-toggle="tooltip" *ngIf="starRating == '561'" data-original-title="1 Star Hotel"> 
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+           </span>
+
+           <span class="ml-2 text-2" data-toggle="tooltip" *ngIf="starRating == '562'" data-original-title="1 Star Hotel"> 
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+           </span>
+
+           <span class="ml-2 text-2" data-toggle="tooltip" *ngIf="starRating == '563'" data-original-title="1 Star Hotel"> 
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+            <i class="fas fa-star text-warning"></i>
+           </span>
+
+          </h1>
+          <p class="opacity-8 mb-0"><i class="fas fa-map-marker-alt"></i> {{hotelAddress}}</p>
+        </div>
+        <div class="col-md-4">
+          <ul class="breadcrumb justify-content-start justify-content-md-end mb-0">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking-hotels.html">Hotels</a></li>
+            <li class="active">Hotel Detail</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header end --> 
+  
+  <!-- Content
+  ============================================= -->
+  <div id="content">
+    <div class="container">
+      <div class="row">
+      	<!-- Middle Panel
+        ============================================= -->
+        <div class="col-lg-8">
+          <div class="bg-light shadow-md rounded p-3 p-sm-4 confirm-details">
+          	 
+            <!-- Hotel Photo Slideshow
+        	============================================= -->
+          <div class="owl-carousel owl-theme single-slider mb-3" data-animateout="fadeOut" data-animatein="fadeIn" data-autoplay="true" data-loop="true" data-autoheight="true" data-nav="true" data-items="1">
+            <div class="item"><a href="#"><img class="img-fluid" [src]="this.hotelImages.Exterior" alt="Hotel photo" /></a></div>
+            <div class="item"><a href="#"><img class="img-fluid" [src]="this.hotelImages.Lobby" alt="Standard Room photo" /></a></div>
+            <div class="item"><a href="#"><img class="img-fluid" [src]="this.hotelImages.Hotel_Rooms" alt="Deluxe Room photo" /></a></div>
+            <div class="item"><a href="#"><img class="img-fluid" [src]="this.hotelImages.Amenities_and_Services" alt="Premium Room photo" /></a></div>
+          </div>
+          <!-- Hotel Photo Slideshow end -->
+            
+            <!-- Secondary Navigation
+        	============================================= -->
+            <nav id="navbar-sticky" class="bg-light pb-2 mb-2 sticky-top smooth-scroll">
+              <ul class="nav nav-tabs">
+                <li class="nav-item"> <a class="nav-link active text-nowrap" href="#Availability" data-toggle="tab" role="tab" aria-controls="Availability">Availability</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#Description"  data-toggle="tab" role="tab" aria-controls="Description" aria-selected="false">Description</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#Facilities"  data-toggle="tab" role="tab" aria-controls="Facilities" aria-selected="false">Facilities</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#Location" data-toggle="tab" role="tab" aria-controls="Location" aria-selected="false">Location</a> </li>
+              </ul>
+            </nav><!-- Secondary Navigation end -->
+            
+            <!-- Availability
+        	============================================= -->
+            <!-- <p id="Availability">{{roomInfo.DESCRIPTION1}}</p> -->
+            <h3 id="Availability">Availability</h3>
+            <hr>
+          <p> Check-in : {{checkin}} | Check-out : {{checkout}} | Room(s) : 1 | Adult(s) : {{adultCount}}</p>
+           
+            <!-- <h2 id="choose-room" role="tabpanel" class="text-6 mt-2">Choose Room</h2> -->
+            <hr class="mb-4"> 
+            <div *ngFor="let eachRoom of rooms;let num=index">
+              <h3 class="my-4">Room {{num+1}}</h3>
+            <div class="row border-bottom mt-4" *ngFor="let roomtype of eachRoom.roomType;let i=index">
+              <div class="col-12 col-md-12">
+                <h4 class="text-5">{{roomtype.name}}</h4>
+                <hr> 
+                <div class="row">
+                  <div class="col-md-2 text-primary font-weight-bold">Board Basis</div>
+                  <div class="col-md-3 text-primary font-weight-bold">
+                    Included Services</div>
+                  <div class="col-md-2 text-primary font-weight-bold">Promotions</div>
+                  <div class="col-md-2 text-primary font-weight-bold">Total Price</div>
+                  <div class="col-md-3"></div>
+                </div>
+                    
+              <div class="row my-4" *ngFor="let eachRateBasis of roomtype.rateBases.rateBasis;let subIndex=index" >
+                  <a href="#cancellation-policy" class="col-md-2 text-primary font-weight-bold" data-toggle="modal" data-target="#cancellation-policy">{{eachRateBasis.attributes.description}}</a>
+                  <div class="col-md-3 text-success font-weight-bold">
+                    Free Cancellation</div>
+                  <div class="col-md-2 text-dark font-weight-bold">Sale Only</div>
+                  <div class="col-md-3 text-dark font-weight-bold" ><span [innerHTML]="currency+' '+ numberWithCommas(eachRateBasis.total_curr)"></span></div>
+                  <!-- <div class="col-md-1"></div> -->
+
+                  <button *ngIf="selectedRooms[num]!=subIndex" class="col-md-2 btn btn-primary btn-sm"  (click)="add(num,subIndex,eachRateBasis,roomtype)"
+                  >Book Now</button>
+                  <button *ngIf="selectedRooms[num]==subIndex" class="col-md-2 btn btn-primary btn-sm" disabled="disabled" 
+                  >SELECTED</button>
+
+                  <!-- <button *ngIf="!isClicked" class="col-md-2 btn btn-secondary btn-sm">selected</button> -->
+
+                 
+
+                    <!-- Cancellation Policy Modal -->
+            <div id="cancellation-policy" class="modal fade" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Cancellation Policy</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                  </div>
+                  <div class="modal-body">
+                    
+                    <div class="table-responsive-md">
+                      <table class="table table-hover border table-bordered">
+                        <thead class="thead-light">
+                          <tr>
+                            <th>From date</th>
+                            <th>To date</th>
+                            <th>Amend Charge</th>
+                            <th>Cancel Charge</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let eachCancellation of eachRateBasis.cancellationRules.rule">
+                          <tr>
+                            <td class="align-middle">{{eachCancellation.fromDate}}</td>
+                            <td class="align-middle">{{eachCancellation.toDate}}</td>
+                            <td class="align-middle">{{eachCancellation.amendCharge}}</td>
+                            <td class="align-middle">{{eachCancellation.cancelCharge}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div><!-- Cancellation Policy Modal end -->
+                </div>
+                
+               
+              </div>
+              
+            </div>
+            </div>
+
+            <!-- <a class="btn btn-sm btn-outline-primary shadow-none ml-auto my-4 text-primary" role="button" (click)="selectedRoom(i)">Select Room</a> -->
+          
+          
+          
+
+
+            
+             <!-- Availability end -->
+
+             <!-- Description -->
+
+             <h2 id="Description" class="text-6 mb-3 mt-2">Description</h2>
+             <hr>
+
+             {{description}}
+            
+            <hr class="my-4">
+            
+             <!-- Description End -->
+            
+            <!-- Facilities -->
+        	
+            <h2 id="Facilities" class="text-6 mb-3 mt-2">Hotel Amenities</h2>
+            <hr>
+       
+            {{amenities}}
+
+            <hr class="my-4">
+            <h2 id="Leisure_and_sport" class="text-6 mb-3 mt-2">Leisure and Sport</h2> 
+            <hr>
+
+            {{leisure}}
+            
+            <hr class="my-4">
+            
+             <!-- Facilities End -->
+            
+            <!-- Location -->
+        
+
+            <h2 class="text-6 mb-3 mt-2" id="Location" role="tabpanel" aria-labelledby="Location">Location</h2>
+
+            <hr>
+            
+            <!-- Location End -->
+
+            
+          </div>
+        </div><!-- Middle Panel End--> 
+
+        <!-- Side Panel
+        ============================================= -->
+        
+        <aside class="col-lg-4 mt-4 mt-lg-0">
+          <div class="bg-light shadow-md rounded p-3">
+            <h3 class="text-5 mb-3">Booking Details</h3>
+
+            <div class="row" *ngFor="let eachRooms of selectedRoomsArr">
+              <div class="col-md-3">Room {{eachRooms.roomIndex+1}}</div>
+              <div class="col-md-3">{{eachRooms.description}}</div>
+              <div class="col-md-3">{{eachRooms.name}}</div>
+              <div class="col-md-3 text-dark" [innerHTML]="currency+' '+ numberWithCommas(eachRooms.price)"></div>
+            </div>
+            
+            <!-- <ul class="list-unstyled">
+             
+
+              <li class="mb-2" *ngFor="let eachRooms of selectedRoomsArr">Room {{eachRooms.roomIndex+1}}<span class="float-right text-4 font-weight-500 text-dark" [innerHTML]="selectedCurrency.SHORTCUT+' '+ numberWithCommas(eachRooms.price)"></span><br>
+                
+                <div class="row">
+                  <div class="col-md-6">{{eachRooms.description}}</div>
+                  <div class="col-md-6 float-right">{{eachRooms.name}}</div>
+                </div>
+              
+               </li>
+             
+            
+            </ul> -->
+
+            
+            <!-- <h3 class="text-4 mb-3 mt-4">Promo Code</h3>
+            <div class="input-group form-group">
+              <input class="form-control" placeholder="Promo Code" aria-label="Promo Code" type="text">
+              <span class="input-group-append">
+              <button class="btn btn-secondary" type="button">APPLY</button>
+              </span> 
+              </div> -->
+
+            <!-- <div class="text-dark bg-light-4 text-4 font-weight-600 p-3"> Total Amount <span class="float-right text-6" [innerHTML]="currency+' '+numberWithCommas(flightDetails.AirItineraryPricingInfo.ItinTotalFare.TotalFare_curr)"></span> </div>
+            <h3 class="text-4 mb-3 mt-4">Promo Code</h3>
+            <div class="input-group form-group">
+              <input class="form-control" placeholder="Promo Code" aria-label="Promo Code" type="text" [(ngModel)]="promoCode">
+              <span class="input-group-append">
+              <button class="btn btn-secondary" type="button" (click)="promoCodeApply()">APPLY</button>
+              </span> </div> -->
+            <!-- <ul class="promo-code pre-scrollable">
+              <li><span class="d-block text-3 font-weight-600">FLTOFFER</span>Up to $500 Off on your booking. Hurry! Limited period offer. <a class="text-1" href="">Terms & Conditions</a></li>
+              <li><span class="d-block text-3 font-weight-600">HOTOFFER</span>Up to $500 Off on your booking. Hurry! Limited period offer. <a class="text-1" href="">Terms & Conditions</a></li>
+              <li><span class="d-block text-3 font-weight-600">SUMMEROFFER</span>Up to $500 Off on your booking. Hurry! Limited period offer. <a class="text-1" href="">Terms & Conditions</a></li>
+              <li><span class="d-block text-3 font-weight-600">BIGOFFER</span>Up to $500 Off on your booking. Hurry! Limited period offer. <a class="text-1" href="">Terms & Conditions</a></li>
+              <li><span class="d-block text-3 font-weight-600">FLTOFFER</span>Up to $500 Off on your booking. Hurry! Limited period offer. <a class="text-1" href="">Terms & Conditions</a></li>
+              <li><span class="d-block text-3 font-weight-600">FLTOFFER</span>Up to $500 Off on your booking. Hurry! Limited period offer. <a class="text-1" href="">Terms & Conditions</a></li>
+            </ul> -->
+            <!-- <button class="btn btn-primary btn-block" *ngIf='isFlightValidated' type="button" (click)="proceedToPayment()">Proceed To Payment</button>
+            <button class="btn btn-primary btn-block" *ngIf='!isFlightValidated' type="button">Please wait... Validating</button> -->
+            <button class="btn btn-primary btn-block" type="button" (click)="hotelBooking(selectedRoomsArr)">Proceed To Payment</button>
+          </div>
+        </aside>
+        
+        <!-- Side Panel End --> 
+      </div>
+    </div>
+  </div>
+  <!-- Content end --> 
+  
+  
+</div>
+<!-- Document Wrapper end --> 
+
+   <!-- Cart Popup -->
+
+   <!-- <div *ngIf="isClicked" class="col d-flex justify-content-center fixed-bottom">
+
+    
+      <div  class="card text-center bg-light text-dark" style="width:10rem;">
+       
+          <p class="card-title">{{roomLength}} Rooms(s) for</p>
+
+          <div class="row">
+            <div class="col-md-12">
+              <p class="card-text">{{selectedCurrency.SHORTCUT}}</p>
+            </div>
+          </div>
+           
+            <div class="row my-4">
+              <div class="col-md-12">
+                <p class="card-text font-weight-bold">{{totalRoomPrice}}</p>
+              </div>
+            </div>
+            
+        
+
+          <div class="row my-4">
+            <div class="col-md-12">
+              <a class="btn btn-primary btn-sm" (click)="hotelBooking()">Book Now</a>
+            </div>
+          </div>
+
+          
+      </div>
+  </div>
+     -->
+
+    <!-- Cart Popup End-->
+
+   
+    
+
+
+
+
+<!-- Script --> 
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="vendor/bootstrap-spinner/bootstrap-spinner.js"></script>
+<script src="vendor/daterangepicker/moment.min.js"></script>
+<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<script>
+$(function() {
+ 'use strict';
+  // Hotels Check In Date
+  $('#hotelsCheckIn').daterangepicker({
+	singleDatePicker: true,
+	minDate: moment(),
+	autoUpdateInput: false,
+	}, function(chosen_date) {
+  $('#hotelsCheckIn').val(chosen_date.format('MM-DD-YYYY'));
+  });
+  
+  // Hotels Check Out Date
+  $('#hotelsCheckOut').daterangepicker({
+	singleDatePicker: true,
+	minDate: moment(),
+	autoUpdateInput: false,
+	}, function(chosen_date) {
+  $('#hotelsCheckOut').val(chosen_date.format('MM-DD-YYYY'));
+});});
+</script> 
+<script src="js/theme.js"></script>

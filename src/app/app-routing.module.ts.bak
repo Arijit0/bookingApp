@@ -1,0 +1,20 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { FlightResultsComponent } from './flight-results/flight-results.component';
+import { HotelResultsComponent } from './hotel-results/hotel-results.component';
+import { FlightConfirmComponent } from './flight-confirm/flight-confirm.component';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent},
+  { path: 'home' , component: HomeComponent},
+  { path: 'flightresults/:tripType/:adult/:child/:infant/:class/:depart/:return/:from/:to' , component: FlightResultsComponent},
+  { path: 'flightconfirmation' , component: FlightConfirmComponent},
+  { path: 'hotelresults' , component: HotelResultsComponent},
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'})],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

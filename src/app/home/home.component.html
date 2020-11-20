@@ -1,0 +1,231 @@
+<!-- Document Wrapper   
+============================================= -->
+<div id="main-wrapper"> 
+  
+   
+    
+    <!-- Content
+    ============================================= -->
+    <div id="content">
+      <div class="hero-wrap py-5">
+        <div class="hero-mask opacity-7 bg-dark"></div>
+        <!-- Slideshow Background -->
+        <div class="hero-bg-slideshow owl-carousel owl-theme" data-animateout="fadeOut" data-animatein="fadeIn" data-autoplay="true" data-loop="true" data-dots="false" data-items="1">
+          <div class="item">
+            <div class="hero-bg" style="background-image:url('/src/assets/images/bg/image-4.jpg');"></div>
+          </div>
+          <div class="item">
+            <div class="hero-bg" style="background-image:url('/src/assets/images/bg/image-7.jpg');"></div>
+          </div>
+          <div class="item">
+            <div class="hero-bg" style="background-image:url('/src/assets/images/bg/image-2.jpg');"></div>
+          </div>
+        </div><!-- Slideshow Background End -->
+        
+        <div class="hero-content py-lg-5 my-lg-5">
+          <div class="container mt-5 pt-4">
+            <h2 class="text-9 font-weight-300 text-light text-center mb-4 mb-md-5">Online Booking. Save Time and Money!</h2>
+            <!-- Tabs -->
+            <ul class="nav nav-tabs border-bottom style-3 justify-content-center" id="myTab" role="tablist">
+              <li class="nav-item"> <a class="nav-link" [ngClass]="{'active':selectedAction==='flights'}" id="flights-tab" data-toggle="tab" href="#flights" role="tab" aria-controls="flights" aria-selected="true"><span><i class="fas fa-plane"></i></span> Flights</a> </li>
+              <li class="nav-item"> <a class="nav-link" [ngClass]="{'active':selectedAction==='hotels'}" id="hotels-tab" data-toggle="tab" href="#hotels" role="tab" aria-controls="hotels" aria-selected="true"><span><i class="fas fa-bed"></i></span> Hotels</a> </li>
+              
+              
+            </ul>
+            <div class="tab-content pt-4 pb-2" id="myTabContent">
+              <!-- Search Hotels -->
+              <div class="tab-pane fade" [ngClass]="{'active show':selectedAction==='hotels'}" id="hotels" role="tabpanel"  aria-labelledby="hotels-tab">
+                <app-hotelsearchpanel></app-hotelsearchpanel>
+              </div>
+              <!-- Search Flight -->
+              <div class="tab-pane fade" [ngClass]="{'active show':selectedAction==='flights'}" id="flights" role="tabpanel" aria-labelledby="flights-tab">
+                <app-flightsearchpanel></app-flightsearchpanel>
+              </div>
+             
+              
+            </div>
+            <!-- Tabs end -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Banner
+      ============================================= -->
+      <section class="section">
+        <div class="container">
+          <h2 class="text-9 font-weight-500 text-center">Featured Offers</h2>
+          <p class="lead text-center mb-4">Get Best Offers &amp; Discounts</p>
+          <div class="owl-carousel owl-theme" data-autoplay="true" data-loop="true" data-nav="true" data-margin="30" data-items-xs="1" data-items-sm="2" data-items-md="2" data-items-lg="3">
+            <div class="item">
+              <div class="card"> <img class="card-img-top" src="/src/assets/images/slider/small-banner-4.jpg" alt="banner">
+                <div class="card-body">
+                  <h5 class="card-title">Up to 10% OFF</h5>
+                  <p class="card-text"><a href="#">On Flight Booking <i class="fas fa-arrow-right ml-1"></i></a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="card"> <img class="card-img-top" src="/src/assets/images/slider/small-banner-5.jpg" alt="banner">
+                <div class="card-body">
+                  <h5 class="card-title">5% OFF</h5>
+                  <p class="card-text"><a href="#">On Train Booking <i class="fas fa-arrow-right ml-1"></i></a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="card"> <img class="card-img-top" src="/src/assets/images/slider/small-banner-1.jpg" alt="banner">
+                <div class="card-body">
+                  <h5 class="card-title">100% Cashback</h5>
+                  <p class="card-text"><a href="#">On Bus Booking <i class="fas fa-arrow-right ml-1"></i></a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="card"> <img class="card-img-top" src="/src/assets/images/slider/small-banner-6.jpg" alt="banner">
+                <div class="card-body">
+                  <h5 class="card-title">$10 Cashback</h5>
+                  <p class="card-text"><a href="#">On Metro Card Recharge<i class="fas fa-arrow-right ml-1"></i></a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="card"> <img class="card-img-top" src="/src/assets/images/slider/small-banner-2.jpg" alt="banner">
+                <div class="card-body">
+                  <h5 class="card-title">$50 Cashback</h5>
+                  <p class="card-text"><a href="#">On Brodband Bill<i class="fas fa-arrow-right ml-1"></i></a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="card"> <img class="card-img-top" src="/src/assets/images/slider/small-banner-3.jpg" alt="banner">
+                <div class="card-body">
+                  <h5 class="card-title">Up to 20% OFF</h5>
+                  <p class="card-text"><a href="#">On Cable Payment<i class="fas fa-arrow-right ml-1"></i></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- Banner end -->
+      
+      <!-- Popular Routes
+      ============================================= -->
+      <section class="section bg-light shadow-md">
+        <div class="container">
+          <h2 class="text-9 font-weight-500 text-center">Popular Routes</h2>
+          <p class="lead text-center mb-4">Search Hotels, Flights, Trains &amp; Bus</p>
+          <ul class="nav nav-tabs nav-fill justify-content-center mb-5" id="myRoutes" role="tablist">
+            <li class="nav-item"> <a class="nav-link active text-4" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="one" aria-selected="true">Hotels</a> </li>
+            <li class="nav-item"> <a class="nav-link text-4" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="two" aria-selected="false">Flights</a> </li>
+            
+          </ul>
+          <div class="tab-content" id="myRoutesContent">
+            <div class="tab-pane fade show" id="two" role="tabpanel" aria-labelledby="two-tab">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div *ngFor="let eachFlights of popularFlights.leftSide">
+                  <p class="d-flex align-items-center">{{
+                    eachFlights.Title}} <a class="btn btn-sm btn-outline-primary shadow-none ml-auto redirectToSearch"  (click)="flightSearch(eachFlights)"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block" >Search Flights</span></a></p>
+                  <hr>
+                </div>
+                </div>
+                <div class="col-lg-6">
+                  <div *ngFor="let eachFlights of popularFlights.rightSide">
+                  <p class="d-flex align-items-center">{{
+                    eachFlights.Title}} <a class="btn btn-sm btn-outline-primary shadow-none ml-auto redirectToSearch"  (click)="flightSearch(eachFlights)"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Flights</span></a></p>
+                  <hr>
+                </div>
+                </div>
+                <div class="col-12">
+                  <p class="text-center mb-0"><a  class="btn btn-link">View All <i class="fas fa-arrow-right ml-1"></i></a></p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade show active" id="one" role="tabpanel" aria-labelledby="one-tab">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div *ngFor="let eachHotels of popularHotels.leftSide">
+                  <p class="d-flex align-items-center">{{eachHotels.Location}} - <small class="text-muted">{{eachHotels.Count}} properties available</small> <a  (click)="hotelSearch(eachHotels)" class="btn btn-sm btn-outline-primary shadow-none ml-auto redirectToSearch"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                  <hr>
+                </div>
+                </div>
+                <div class="col-lg-6">
+                  <div *ngFor="let eachHotels of popularHotels.rightSide">
+                  <p class="d-flex align-items-center">{{eachHotels.Location}} - <small class="text-muted">{{eachHotels.Count}} properties available</small> <a  (click)="hotelSearch(eachHotels)" class="btn btn-sm btn-outline-primary shadow-none ml-auto redirectToSearch"><i class="fas fa-search d-block d-sm-none"></i> <span class="d-none d-sm-block">Search Hotels</span></a></p>
+                  <hr>
+                </div>
+                </div>
+                <div class="col-12">
+                  <p class="text-center mb-0"><a href="#" class="btn btn-link">View All <i class="fas fa-arrow-right ml-1"></i></a></p>
+                </div>
+              </div>
+            </div>
+            
+           
+          </div>
+        </div>
+      </section><!-- Popular Routes end -->
+      
+      <!-- Partners
+      ============================================= -->
+      <div class="hero-wrap section">
+        <div class="hero-mask opacity-8 bg-secondary"></div>
+        <div class="hero-bg" style="background-image:url('/src/assets/images/bg/image-2.jpg');"></div>
+        <div class="hero-content">
+          <div class="container">
+            <h2 class="text-9 font-weight-500 text-light text-center mb-4">Our Partners</h2>
+            <ul class="nav nav-tabs style-2 justify-content-center" id="myPartners" role="tablist">
+              <li class="nav-item"> <a class="nav-link active" id="operator-one-tab" data-toggle="tab" href="#operator-one" role="tab" aria-controls="operator-one" aria-selected="true">Flights</a> </li>
+              <li class="nav-item"> <a class="nav-link" id="operator-two-tab" data-toggle="tab" href="#operator-two" role="tab" aria-controls="operator-two" aria-selected="false">Trains</a> </li>
+             
+            </ul>
+            <div class="tab-content bg-light border shadow-sm rounded-bottom px-3" id="myPartnersContent">
+              <div class="tab-pane fade show active" id="operator-one" role="tabpanel" aria-labelledby="operator-one-tab">
+                <div class="brands-grid">
+                  <div class="row justify-content-center">
+                    <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-1.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-2.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-3.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-4.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-5.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-6.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-7.png" alt="Brands"></a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="operator-two" role="tabpanel" aria-labelledby="operator-two-tab">
+                <div class="brands-grid">
+                  <div class="row justify-content-center">
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-1.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-2.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-3.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-4.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-5.png" alt="Brands"></a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="operator-three" role="tabpanel" aria-labelledby="operator-three-tab">
+                <div class="brands-grid">
+                  <div class="row justify-content-center">
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-1.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-2.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-3.png" alt="Brands"></a></div>
+                    <div class="col-4 col-md-3 col-lg-2 text-center"><a href=""><img class="img-fluid" src="/src/assets/images/brands/flights/airlines-4.png" alt="Brands"></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Partners end --> 
+      <!--Error Modal-->
+      <app-error-modal></app-error-modal>
+      <!--Error Modal end-->
+    </div>
+    <!-- Content end --> 
+    
+  
+    
+  </div>
+  <!-- Document Wrapper end --> 

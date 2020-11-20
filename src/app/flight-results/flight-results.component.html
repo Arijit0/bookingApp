@@ -1,0 +1,1704 @@
+<!-- Preloader -->
+<div id="preloader" *ngIf="loaderShow"><div data-loader="dual-ring"></div></div>
+<!-- Preloader End -->
+
+<div id="main-wrapper">
+  <!-- Page Header
+      ============================================= -->
+  <section class="page-header page-header-text-light bg-secondary">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1>
+            Flights -
+            <span [innerHTML]="showReturnDiv ? 'Round' : 'One Way'"></span> Trip
+          </h1>
+        </div>
+        <div class="col-md-4">
+          <ul
+            class="breadcrumb justify-content-start justify-content-md-end mb-0"
+          >
+            <li><a href="index.html">Home</a></li>
+            <li><a href="booking-flights.html">Flights</a></li>
+            <li class="active">Flights One Way</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Header end -->
+
+  <!-- Content
+    ============================================= -->
+  <div id="content">
+    <section class="container">
+      <div class="row">
+        <div class="col mb-2">
+          <app-flightsearchpanel
+            (reply)="flightInfoGet()"
+          ></app-flightsearchpanel>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Side Panel
+            ============================================= -->
+        <aside class="col-md-3">
+          <div class="bg-light shadow-md rounded p-3">
+            <h3 class="text-5">
+              Filter
+              <span class="text-1"
+                >({{ filterAirportList.length }} flights found)</span
+              >
+            </h3>
+
+            <div
+              class="accordion accordion-alternate style-2"
+              id="toggleAlternate"
+            >
+              <div class="card">
+                <div class="card-header" id="stops">
+                  <h5 class="mb-0">
+                    <a
+                      href="#"
+                      data-toggle="collapse"
+                      data-target="#togglestops"
+                      aria-expanded="true"
+                      aria-controls="togglestops"
+                      >No. of Stops</a
+                    >
+                  </h5>
+                </div>
+                <div
+                  id="togglestops"
+                  class="collapse show"
+                  aria-labelledby="stops"
+                >
+                  <div class="card-body">
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        id="nonstop"
+                        name="stop"
+                        class="custom-control-input"
+                        [(ngModel)]="nonstop"
+                        (change)="stopsfilter()"
+                      />
+                      <label class="custom-control-label" for="nonstop"
+                        >Non Stop</label
+                      >
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        id="1stop"
+                        name="stop"
+                        class="custom-control-input"
+                        [(ngModel)]="onestop"
+                        (change)="stopsfilter()"
+                      />
+                      <label class="custom-control-label" for="1stop"
+                        >1 Stop</label
+                      >
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        id="2stop"
+                        name="stop"
+                        class="custom-control-input"
+                        [(ngModel)]="twoplusstop"
+                        (change)="stopsfilter()"
+                      />
+                      <label class="custom-control-label" for="2stop"
+                        >2+ Stop</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="price">
+                  <h5 class="mb-0">
+                    <a
+                      href="#"
+                      class="collapse"
+                      data-toggle="collapse"
+                      data-target="#togglePrice"
+                      aria-expanded="true"
+                      aria-controls="togglePrice"
+                      >Price</a
+                    >
+                  </h5>
+                </div>
+                <div
+                  id="togglePrice"
+                  class="collapse show"
+                  aria-labelledby="price"
+                >
+                  <div class="card-body">
+                    <p>
+                      <input
+                        id="amount"
+                        type="text"
+                        readonly
+                        class="form-control border-0 bg-transparent p-0"
+                      />
+                    </p>
+                    <div id="slider-range"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="departureTime">
+                  <h5 class="mb-0">
+                    <a
+                      href="#"
+                      class="collapse"
+                      data-toggle="collapse"
+                      data-target="#toggleDepartureTime"
+                      aria-expanded="true"
+                      aria-controls="toggleDepartureTime"
+                    >
+                      {{ flightFromShort }} Departure Time</a
+                    >
+                  </h5>
+                </div>
+                <div
+                  id="toggleDepartureTime"
+                  class="collapse show"
+                  aria-labelledby="departureTime"
+                >
+                  <div class="card-body">
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jDepartureearlyMorning"
+                        name="departureTime"
+                        class="custom-control-input"
+                        value="1"
+                        (change)="timeFilter('jDeparture', 1, $event)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="jDepartureearlyMorning"
+                        >Early Morning</label
+                      >
+                      <small class="text-muted float-right">12am - 8am</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jDeparturemorning"
+                        name="departureTime"
+                        class="custom-control-input"
+                        value="2"
+                        (change)="timeFilter('jDeparture', 2, $event)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="jDeparturemorning"
+                        >Morning</label
+                      >
+                      <small class="text-muted float-right">8am - 12pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jDeparturemidDay"
+                        name="departureTime"
+                        class="custom-control-input"
+                        value="3"
+                        (change)="timeFilter('jDeparture', 3, $event)"
+                      />
+                      <label class="custom-control-label" for="jDeparturemidDay"
+                        >Mid-Day</label
+                      >
+                      <small class="text-muted float-right">12pm - 4pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jDepartureevening"
+                        name="departureTime"
+                        class="custom-control-input"
+                        value="4"
+                        (change)="timeFilter('jDeparture', 4, $event)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="jDepartureevening"
+                        >Evening</label
+                      >
+                      <small class="text-muted float-right">4pm - 8pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jDeparturenight"
+                        name="departureTime"
+                        class="custom-control-input"
+                        value="5"
+                        (change)="timeFilter('jDeparture', 5, $event)"
+                      />
+                      <label class="custom-control-label" for="jDeparturenight"
+                        >Night</label
+                      >
+                      <small class="text-muted float-right">8pm - 12am</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" id="departureTime">
+                  <h5 class="mb-0">
+                    <a
+                      href="#"
+                      class="collapse"
+                      data-toggle="collapse"
+                      data-target="#toggleDepartureTime"
+                      aria-expanded="true"
+                      aria-controls="toggleDepartureTime"
+                    >
+                      {{ flightToShort }} Arrival Time</a
+                    >
+                  </h5>
+                </div>
+                <div
+                  id="toggleDepartureTime"
+                  class="collapse show"
+                  aria-labelledby="departureTime"
+                >
+                  <div class="card-body">
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jArrivalearlyMorning"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('jArrival', 1, $event)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="jArrivalearlyMorning"
+                        >Early Morning</label
+                      >
+                      <small class="text-muted float-right">12am - 8am</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jArrivalmorning"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('jArrival', 2, $event)"
+                      />
+                      <label class="custom-control-label" for="jArrivalmorning"
+                        >Morning</label
+                      >
+                      <small class="text-muted float-right">8am - 12pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jArrivalmidDay"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('jArrival', 3, $event)"
+                      />
+                      <label class="custom-control-label" for="jArrivalmidDay"
+                        >Mid-Day</label
+                      >
+                      <small class="text-muted float-right">12pm - 4pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jArrivalevening"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('jArrival', 4, $event)"
+                      />
+                      <label class="custom-control-label" for="jArrivalevening"
+                        >Evening</label
+                      >
+                      <small class="text-muted float-right">4pm - 8pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="jArrivalnight"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('jArrival', 5, $event)"
+                      />
+                      <label class="custom-control-label" for="jArrivalnight"
+                        >Night</label
+                      >
+                      <small class="text-muted float-right">8pm - 12am</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card" *ngIf="showReturnDiv">
+                <div class="card-header" id="departureTime">
+                  <h5 class="mb-0">
+                    <a
+                      href="#"
+                      class="collapse"
+                      data-toggle="collapse"
+                      data-target="#toggleDepartureTime"
+                      aria-expanded="true"
+                      aria-controls="toggleDepartureTime"
+                    >
+                      {{ flightToShort }} Departure Time</a
+                    >
+                  </h5>
+                </div>
+                <div
+                  id="toggleDepartureTime"
+                  class="collapse show"
+                  aria-labelledby="departureTime"
+                >
+                  <div class="card-body">
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rDepartureearlyMorning"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rDeparture', 1, $event)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="rDepartureearlyMorning"
+                        >Early Morning</label
+                      >
+                      <small class="text-muted float-right">12am - 8am</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rDeparturemorning"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rDeparture', 2, $event)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="rDeparturemorning"
+                        >Morning</label
+                      >
+                      <small class="text-muted float-right">8am - 12pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rDeparturemidDay"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rDeparture', 3, $event)"
+                      />
+                      <label class="custom-control-label" for="rDeparturemidDay"
+                        >Mid-Day</label
+                      >
+                      <small class="text-muted float-right">12pm - 4pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rDepartureevening"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rDeparture', 4, $event)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="rDepartureevening"
+                        >Evening</label
+                      >
+                      <small class="text-muted float-right">4pm - 8pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rDeparturenight"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rDeparture', 5, $event)"
+                      />
+                      <label class="custom-control-label" for="rDeparturenight"
+                        >Night</label
+                      >
+                      <small class="text-muted float-right">8pm - 12am</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card" *ngIf="showReturnDiv">
+                <div class="card-header" id="departureTime">
+                  <h5 class="mb-0">
+                    <a
+                      href="#"
+                      class="collapse"
+                      data-toggle="collapse"
+                      data-target="#toggleDepartureTime"
+                      aria-expanded="true"
+                      aria-controls="toggleDepartureTime"
+                    >
+                      {{ flightFromShort }} Arrival Time</a
+                    >
+                  </h5>
+                </div>
+                <div
+                  id="toggleDepartureTime"
+                  class="collapse show"
+                  aria-labelledby="departureTime"
+                >
+                  <div class="card-body">
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rArrivalearlyMorning"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rArrival', 1, $event)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="rArrivalearlyMorning"
+                        >Early Morning</label
+                      >
+                      <small class="text-muted float-right">12am - 8am</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rArrivalmorning"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rArrival', 2, $event)"
+                      />
+                      <label class="custom-control-label" for="rArrivalmorning"
+                        >Morning</label
+                      >
+                      <small class="text-muted float-right">8am - 12pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rArrivalmidDay"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rArrival', 3, $event)"
+                      />
+                      <label class="custom-control-label" for="rArrivalmidDay"
+                        >Mid-Day</label
+                      >
+                      <small class="text-muted float-right">12pm - 4pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rArrivalevening"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rArrival', 4, $event)"
+                      />
+                      <label class="custom-control-label" for="rArrivalevening"
+                        >Evening</label
+                      >
+                      <small class="text-muted float-right">4pm - 8pm</small>
+                    </div>
+                    <div class="custom-control custom-checkbox clearfix">
+                      <input
+                        type="checkbox"
+                        id="rArrivalnight"
+                        name="departureTime"
+                        class="custom-control-input"
+                        (change)="timeFilter('rArrival', 5, $event)"
+                      />
+                      <label class="custom-control-label" for="rArrivalnight"
+                        >Night</label
+                      >
+                      <small class="text-muted float-right">8pm - 12am</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="airlines">
+                  <h5 class="mb-0">
+                    <a
+                      href="#"
+                      class="collapse"
+                      data-toggle="collapse"
+                      data-target="#toggleAirlines"
+                      aria-expanded="true"
+                      aria-controls="toggleAirlines"
+                      >Airlines</a
+                    >
+                  </h5>
+                </div>
+                <div
+                  id="toggleAirlines"
+                  class="collapse show"
+                  aria-labelledby="airlines"
+                >
+                  <div class="card-body">
+                    <div
+                      class="custom-control custom-checkbox"
+                      *ngFor="let eachAirline of airlineNameList; let i = index"
+                    >
+                      <input
+                        type="checkbox"
+                        [id]="eachAirline.ac"
+                        name="airlines"
+                        class="custom-control-input"
+                        [checked]="eachAirline.ac==ffd_airlinecode"
+                        (change)="airlineFilter($event, eachAirline.ac)"
+                      />
+                      <label
+                        class="custom-control-label"
+                        [for]="eachAirline.ac"
+                        >{{ eachAirline.an }}</label
+                      >
+                    </div>
+
+                    <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="multiple" name="airlines" class="custom-control-input">
+                          <label class="custom-control-label" for="multiple">Multiple Airlines</label>
+                        </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <!-- Side Panel end -->
+
+        <div class="col-md-9 mt-4 mt-md-0">
+          <div *ngIf="errorShow">
+            <h3>{{ errormsg }}</h3>
+          </div>
+          <div class="border-bottom mb-3 pb-3" *ngIf="!errorShow">
+            <div class="row align-items-center">
+              <div class="col-6 col-md-8 fmButtonBox">
+                
+                <button
+                  class="btn btn-primary btn-block fmButton"
+                  data-toggle="modal"
+                  data-target="#flightMatrix"
+                  type="button"
+                  (click)="flightMatrixbuild()"
+                >
+                  Flight Matrix
+                </button>
+
+
+                 <span class="text-warning text-nowrap">Prices inclusive of taxes</span>
+              </div>
+
+              <div class="col-6 col-md-4">
+                <div class="row no-gutters ml-auto">
+                  <label
+                    class="col col-md-3 col-form-label-sm text-right mr-2 mb-0"
+                    for="input-sort"
+                    >Sort By:</label
+                  >
+                  <select
+                    id="input-sort"
+                    class="col-md-8 custom-select custom-select-sm col"
+                    (change)="sort($event.target.value)"
+                  >
+                    <option value="price" selected>Price</option>
+                    <option value="duration">Duration</option>
+                    <option value="departure">Departure time</option>
+                    <option value="return">Return time</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-light shadow-md rounded py-4 no-gutters row"
+            *ngIf="!errorShow"
+          >
+            <div [ngClass]="!showReturnDiv ? 'col-12' : 'col-6'">
+              <div class="px-3">
+                <h2 class="text-5" *ngIf="airportNameCodePair[flightFromShort]">
+                  {{ airportNameCodePair[flightFromShort].ct }}
+                  <small>to</small> {{ airportNameCodePair[flightToShort].ct }}
+                </h2>
+              </div>
+              <div class="text-1 bg-light-3 border border-left-0 py-2 px-3">
+                <div class="form-row">
+                  <div
+                    class="col col-sm col-lg-3 text-center d-none d-sm-block"
+                  >
+                    Airline
+                  </div>
+                  <div class="col-6 col-sm col-lg-3 text-center">Departure</div>
+                  <div class="col-6 col-sm col-lg-3 text-center">Arrival</div>
+
+                  <div
+                    class="col col-sm col-lg-3 text-right d-none d-sm-block"
+                    *ngIf="!showReturnDiv"
+                  >
+                    Price
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6" *ngIf="showReturnDiv">
+              <div class="px-3">
+                <h2 class="text-5" *ngIf="airportNameCodePair[flightFromShort]">
+                  {{ airportNameCodePair[flightToShort].ct }} <small>to</small>
+                  {{ airportNameCodePair[flightFromShort].ct }}
+                </h2>
+              </div>
+              <div
+                class="text-1 bg-light-3 border border-right-0 border-left-0 py-2 px-3"
+              >
+                <div class="form-row">
+                  <div
+                    class="col col-sm col-lg-3 text-center d-none d-sm-block"
+                  >
+                    Airline
+                  </div>
+                  <div class="col-6 col-sm col-lg-3 text-center">Departure</div>
+                  <div class="col-6 col-sm col-lg-3 text-center">Arrival</div>
+                  <div class="col col-sm col-lg-3 text-right d-none d-sm-block">
+                    Price
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="row no-gutters col-12"
+
+              *ngFor="let eachflight of filterAirportList; let i = index"
+            >
+              <div
+                class="row no-gutters col-12"
+                [id]="'flightDiv'+i"
+                *ngIf="
+                  eachflight.stopfilter &&
+                  eachflight.airlinefilter &&
+                  eachflight.jarritimefilter &&
+                  eachflight.jdepttimefilter &&
+                  eachflight.rarritimefilter &&
+                  eachflight.rdepttimefilter &&
+                  eachflight.pricefilter
+                "
+              >
+                <!-- Departure Flights
+                  ============================================= -->
+
+                <div [ngClass]="!showReturnDiv ? 'col-12' : 'col-6'">
+                  <div class="flight-list round-trip border-right" >
+                    <div class="flight-item">
+                      <div
+                        class="form-row align-items-center flex-row pt-4 pb-2 px-3"
+                      >
+                        <div
+                          class="col-12 col-sm col-lg-3 d-flex align-items-center text-center mb-2 mb-sm-0 company-info"
+                        >
+                          <div
+                            class="custom-control custom-radio custom-control-inline mr-1"
+                          >
+                            <input
+                              [id]="'departure-flight' + i"
+                              name="departure-flight"
+                              class="custom-control-input"
+                              type="radio"
+                              [value]="eachflight"
+                              [(ngModel)]="selectedFlight"
+                              [checked]="i === 0"
+                              (change)="flightSelect(eachflight)"
+                            />
+                            <label
+                              class="custom-control-label"
+                              [for]="'departure-flight' + i"
+                            ></label>
+                          </div>
+                          <div class="d-block">
+                            <img
+                              class="img-fluid"
+                              alt=""
+                              [src]="
+                                cdnPath +
+                                eachflight.OriginDestinationOptions[0]
+                                  .FlightSegments[0].MarketingAirlineCode +
+                                '.png'
+                              "
+                            />
+                            <span class="d-block text-1 text-dark text-left elipsis_tri  prevent_three_line_break">{{
+                              this.airlineNameCodePair[
+                                eachflight.OriginDestinationOptions[0]
+                                  .FlightSegments[0].MarketingAirlineCode
+                              ]
+                            }}</span>
+                          </div>
+                        </div>
+                        <div
+                          class="col-6 col-sm col-lg-3 text-center time-info"
+                        >
+                          <span>{{
+                            eachflight.OriginDestinationOptions[0].DepartureTime
+                          }}</span>
+                          <small
+                            class="text-muted d-none d-sm-block"
+                            [innerHTML]="
+                              eachflight.OriginDestinationOptions[0].stops == 0
+                                ? 'Non Stop'
+                                : eachflight.OriginDestinationOptions[0].stops +
+                                  ' Stop'
+                            "
+                          ></small>
+                          <small
+                            class="text-muted d-none d-sm-block"
+                            *ngIf="this.flightFrom.length == 3?eachflight.OriginDestinationOptions[0].DepartureAirport != flightFrom : eachflight.OriginDestinationOptions[0].DepartureAirport != flightFrom.substring(1, 4)"
+                            [innerHTML]="
+                               eachflight.OriginDestinationOptions[0].DepartureAirport
+                            "
+                          ></small>
+                        </div>
+                        <div
+                          class="col-6 col-sm col-lg-3 text-center time-info"
+                        >
+                          <span>{{
+                            eachflight.OriginDestinationOptions[0].ArrivalTime
+                          }} <span *ngIf="eachflight.OriginDestinationOptions[0].DeltaDays!=0">(+{{eachflight.OriginDestinationOptions[0].DeltaDays}})</span></span>
+                          <small class="text-muted d-none d-sm-block">{{
+                            eachflight.OriginDestinationOptions[0]
+                              .totalDurationFormatted
+                          }}</small>
+                          <small
+                          class="text-muted d-none d-sm-block"
+                          *ngIf="this.flightFrom.length == 3?eachflight.OriginDestinationOptions[0].ArrivalAirport != flightTo : eachflight.OriginDestinationOptions[0].ArrivalAirport != flightTo.substring(1, 4)"
+                          [innerHTML]="
+                             eachflight.OriginDestinationOptions[0].ArrivalAirport
+                          "
+                        ></small>
+                        </div>
+                        <div
+                          class="col-12 col-sm col-lg-3 text-center text-sm-right text-dark text-4 price"
+                          [ngClass]="showReturnDiv ? '' : 'd-none'"
+                        >
+                          <span class="badge badge-success py-1 px-2 font-weight-normal text-0" *ngIf="eachflight.IsRefundable == 'Yes'">
+                            Refundable
+                          </span>
+                          <span class="badge badge-warning py-1 px-1 font-weight-normal text-0" *ngIf="eachflight.IsRefundable == 'No'">
+                            Non Refundable
+                          </span>
+                        </div>
+                        <div
+                          class="col-12 col-sm col-lg-3 text-center text-sm-right text-dark text-4 price"
+                          [ngClass]="showReturnDiv ? 'd-none' : ''"
+                          [innerHTML]="
+                            currency +
+                            ' ' +
+                            numberWithCommas(
+                              eachflight.AirItineraryPricingInfo.ItinTotalFare
+                                .TotalFare_curr
+                            )
+                          "
+                        ></div>
+                        <div
+                          class="col col-sm-auto col-lg-3 ml-auto text-0 text-center text-sm-right"
+                        >
+                          <a
+                            data-toggle="modal"
+                            data-target="#flight-1"
+                            href=""
+                            (click)="
+                              showFlightDetails(
+                                eachflight.AirItineraryPricingInfo,
+                                eachflight.OriginDestinationOptions[0],
+                                eachflight.IsRefundable
+                              )
+                            "
+                            >Flight Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Departure Flights end -->
+
+                <!-- Returns Flights
+                  ============================================= -->
+                <div class="col-6" *ngIf="showReturnDiv">
+                  <div class="flight-list round-trip">
+                    <div class="flight-item">
+                      <div
+                        class="form-row align-items-center flex-row pt-4 pb-2 px-3"
+                      >
+                        <div
+                          class="col-12 col-sm col-lg-3 d-flex align-items-center text-center mb-2 mb-sm-0 company-info"
+                        >
+                          <div
+                            class="col-md-6"
+                            (click)="favoriteCall('favorite'+i,eachflight.OriginDestinationOptions[0])"
+                          >
+                          <img
+                            class="img-fluid"
+                            [id]="'favorite'+i"
+                            alt=""
+                            src="../../assets/images/white_star.png"
+                          />
+                          
+                        </div>
+                          <div class="d-block">
+                            <img
+                              class="img-fluid"
+                              alt=""
+                              [src]="
+                                cdnPath +
+                                eachflight.OriginDestinationOptions[1]
+                                  .FlightSegments[0].MarketingAirlineCode +
+                                '.png'
+                              "
+                            />
+                            <span class="d-block text-1 text-dark text-left">{{
+                              this.airlineNameCodePair[
+                                eachflight.OriginDestinationOptions[1]
+                                  .FlightSegments[0].MarketingAirlineCode
+                              ]
+                            }}</span>
+                          </div>
+                        </div>
+                        <div
+                          class="col-6 col-sm col-lg-3 text-center time-info"
+                        >
+                          <span>{{
+                            eachflight.OriginDestinationOptions[1].DepartureTime
+                          }}</span>
+                          <small
+                            class="text-muted d-none d-sm-block"
+                            [innerHTML]="
+                              eachflight.OriginDestinationOptions[1].stops == 0
+                                ? 'Non Stop'
+                                : eachflight.OriginDestinationOptions[1].stops +
+                                  ' Stop'
+                            "
+                          ></small>
+                          <small
+                            class="text-muted d-none d-sm-block"
+                            *ngIf="this.flightFrom.length == 3?eachflight.OriginDestinationOptions[1].DepartureAirport != flightTo : eachflight.OriginDestinationOptions[1].DepartureAirport != flightTo.substring(1, 4)"
+                            [innerHTML]="
+                               eachflight.OriginDestinationOptions[1].DepartureAirport
+                            "
+                          ></small>
+                        </div>
+                        <div
+                          class="col-6 col-sm col-lg-3 text-center time-info"
+                        >
+                          <span>{{
+                            eachflight.OriginDestinationOptions[1].ArrivalTime
+                          }} <span *ngIf="eachflight.OriginDestinationOptions[1].DeltaDays!=0">(+{{eachflight.OriginDestinationOptions[1].DeltaDays}})</span></span>
+                          <small class="text-muted d-none d-sm-block">{{
+                            eachflight.OriginDestinationOptions[1]
+                              .totalDurationFormatted
+                          }}</small>
+                          <small
+                          class="text-muted d-none d-sm-block"
+                          *ngIf="this.flightFrom.length == 3?eachflight.OriginDestinationOptions[1].ArrivalAirport != flightFrom : eachflight.OriginDestinationOptions[1].ArrivalAirport != flightFrom.substring(1, 4)"
+                          [innerHTML]="
+                             eachflight.OriginDestinationOptions[1].ArrivalAirport
+                          "
+                        ></small>
+                        </div>
+                        <div
+                          class="col-12 col-sm col-lg-3 text-center text-sm-right text-dark text-4 price"
+                          [innerHTML]="
+                            currency +
+                            ' ' +
+                            numberWithCommas(
+                              eachflight.AirItineraryPricingInfo.ItinTotalFare
+                                .TotalFare_curr
+                            )
+                          "
+                        ></div>
+                        <div
+                          class="col col-sm-auto col-lg-3 ml-auto text-0 text-center text-sm-right"
+                        >
+                          <a
+                            data-toggle="modal"
+                            data-target="#flight-1"
+                            href=""
+                            (click)="
+                              showFlightDetails(
+                                eachflight.AirItineraryPricingInfo,
+                                eachflight.OriginDestinationOptions[1],
+                                eachflight.IsRefundable
+                              )
+                            "
+                            >Flight Details</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Returns Flights end -->
+              </div>
+            </div>
+            <!-- Flight Details Modal Dialog
+                      ============================================= -->
+            <div
+              id="flight-1"
+              class="modal fade"
+              role="dialog"
+              style="display: none"
+              aria-hidden="true"
+            >
+              <div
+                class="modal-dialog modal-lg modal-dialog-centered"
+                role="document"
+              >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Flight Details</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="flight-details">
+                      <div class="row mb-4">
+                        <div class="col-12 col-sm-8 col-lg-8">
+                          <div class="row align-items-center trip-title mb-3">
+                            <div
+                              class="col col-sm-auto text-center text-sm-left"
+                            >
+                              <h5 class="m-0 trip-place">
+                                {{
+                                  eachFlightDetails.DepartureAirport
+                                    ? airportNameCodePair[
+                                        eachFlightDetails.DepartureAirport
+                                      ].ct
+                                    : ""
+                                }}
+                              </h5>
+                            </div>
+                            <div
+                              class="col-auto text-10 text-black-50 text-center trip-arrow"
+                            >
+                              ➝
+                            </div>
+                            <div
+                              class="col col-sm-auto text-center text-sm-left"
+                            >
+                              <h5 class="m-0 trip-place">
+                                {{
+                                  eachFlightDetails.ArrivalAirport
+                                    ? airportNameCodePair[
+                                        eachFlightDetails.ArrivalAirport
+                                      ].ct
+                                    : ""
+                                }}
+                              </h5>
+                            </div>
+                          </div>
+                          <div class="row align-items-center">
+                            <div class="col col-sm-auto">
+                              <span class="text-4">{{
+                                eachFlightDetails.DepartureDate
+                              }}</span>
+                            </div>
+                            <div class="col-auto">
+                              <!-- <span
+                                class="badge badge-success py-1 px-2 font-weight-normal text-1"
+                                >Refundable</span
+                              > -->
+                              <span class="badge badge-success py-1 px-2 font-weight-normal text-0" *ngIf="eachflightIsRefundable == 'Yes'">
+                                Refundable
+                              </span>
+                              <span class="badge badge-warning py-1 px-1 font-weight-normal text-0" *ngIf="eachflightIsRefundable == 'No'">
+                                Non Refundable
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="col-12 col-sm-4 col-lg-4 text-center text-sm-right mt-3 mt-sm-0"
+                        >
+                          <span
+                            class="text-dark text-7 price"
+                            [innerHTML]="
+                              currency +
+                              ' ' +
+                              numberWithCommas(eachFareDetails.TotalFare_curr)
+                            "
+                          >
+                          </span>
+                          <span class="text-1 text-muted d-block"
+                            >(Per Adult)</span
+                          >
+                          <span class="text-1 text-danger d-block"
+                            >? 2 seat(s) left</span
+                          >
+                        </div>
+                      </div>
+                      <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                          <a
+                            class="nav-link active"
+                            id="first-tab"
+                            data-toggle="tab"
+                            href="#first"
+                            role="tab"
+                            aria-controls="first"
+                            aria-selected="true"
+                            >Itinerary</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link"
+                            id="second-tab"
+                            data-toggle="tab"
+                            href="#second"
+                            role="tab"
+                            aria-controls="second"
+                            aria-selected="false"
+                            >Fare Details</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link"
+                            id="third-tab"
+                            data-toggle="tab"
+                            href="#third"
+                            role="tab"
+                            aria-controls="third"
+                            aria-selected="false"
+                            >Baggage Details</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link"
+                            id="fourth-tab"
+                            data-toggle="tab"
+                            href="#fourth"
+                            role="tab"
+                            aria-controls="fourth"
+                            aria-selected="false"
+                            >Cancellation Fee</a
+                          >
+                        </li>
+                      </ul>
+                      <div class="tab-content my-3" id="myTabContent">
+                        <div
+                          class="tab-pane fade active show"
+                          id="first"
+                          role="tabpanel"
+                          aria-labelledby="first-tab"
+                        >
+                          <div
+                            class="row flex-row pt-4 px-md-4"
+                            *ngFor="
+                              let eachFlight of eachFlightDetails.FlightSegments
+                            "
+                          >
+                            <div
+                              class="col-12 col-sm-3 text-center d-lg-flex company-info"
+                            >
+                              <span class="align-middle"
+                                ><img
+                                  class="img-fluid"
+                                  alt=""
+                                  [src]="
+                                    cdnPath +
+                                    eachFlight.MarketingAirlineCode +
+                                    '.png'
+                                  "
+                                />
+                              </span>
+                              <span class="align-middle ml-lg-2">
+                                <span class="d-block text-1 text-dark">{{
+                                  this.airlineNameCodePair[
+                                    eachFlight.MarketingAirlineCode
+                                  ]
+                                }}</span>
+                                <small class="text-muted d-block"
+                                  >{{ eachFlight.MarketingAirlineCode }}-{{
+                                    eachFlight.FlightNumber
+                                  }}</small
+                                >
+                              </span>
+                            </div>
+                            <div
+                              class="col-12 col-sm-3 text-center time-info mt-3 mt-sm-0"
+                            >
+                              <span class="text-5 text-dark">{{
+                                eachFlight.DepartureTime
+                              }}</span>
+                              <small class="text-muted d-block"
+                                >{{
+                                  eachFlight.DepartureAirportLocationCode
+                                    ? airportNameCodePair[
+                                        eachFlight.DepartureAirportLocationCode
+                                      ].an
+                                    : ""
+                                }},
+                                {{
+                                  eachFlight.DepartureAirportLocationCode
+                                    ? airportNameCodePair[
+                                        eachFlight.DepartureAirportLocationCode
+                                      ].ct
+                                    : ""
+                                }}</small
+                              >
+                            </div>
+                            <div
+                              class="col-12 col-sm-3 text-center time-info mt-3 mt-sm-0"
+                            >
+                              <span class="text-3 text-dark">{{
+                                eachFlight.JourneyDurationFormatted
+                              }}</span>
+                              <small class="text-muted d-block">Duration</small>
+                            </div>
+                            <div
+                              class="col-12 col-sm-3 text-center time-info mt-3 mt-sm-0"
+                            >
+                              <span class="text-5 text-dark">{{
+                                eachFlight.ArrivalTime
+                              }}</span>
+                              <small class="text-muted d-block"
+                                >{{
+                                  eachFlight.ArrivalAirportLocationCode
+                                    ? airportNameCodePair[
+                                        eachFlight.ArrivalAirportLocationCode
+                                      ].an
+                                    : ""
+                                }},
+                                {{
+                                  eachFlight.ArrivalAirportLocationCode
+                                    ? airportNameCodePair[
+                                        eachFlight.ArrivalAirportLocationCode
+                                      ].ct
+                                    : ""
+                                }}</small
+                              >
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="tab-pane fade"
+                          id="second"
+                          role="tabpanel"
+                          aria-labelledby="second-tab"
+                        >
+                          <div class="table-responsive-md">
+                            <table
+                              class="table table-hover table-bordered bg-light"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td>Base Fare</td>
+                                  <td
+                                    class="text-right"
+                                    [innerHTML]="
+                                      currency +
+                                      ' ' +
+                                      numberWithCommas(eachFareDetails.BaseFare_curr)
+                                    "
+                                  ></td>
+                                </tr>
+                                <tr>
+                                  <td>Total Tax</td>
+                                  <td
+                                    class="text-right"
+                                    [innerHTML]="
+                                      currency +
+                                      ' ' +
+                                      numberWithCommas(eachFareDetails.TotalTax_curr)
+                                    "
+                                  ></td>
+                                </tr>
+                                <tr>
+                                  <td>Total</td>
+                                  <td
+                                    class="text-right"
+                                    [innerHTML]="
+                                      currency +
+                                      ' ' +
+                                      numberWithCommas(
+                                        eachFareDetails.TotalFare_curr
+                                      )
+                                    "
+                                  ></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div
+                          class="tab-pane fade"
+                          id="third"
+                          role="tabpanel"
+                          aria-labelledby="third-tab"
+                        >
+                          <div
+                            class="table-responsive-md"
+                            *ngFor="
+                              let eachFlight of eachFlightDetails.FlightSegments
+                            "
+                          >
+                            <table
+                              class="table table-hover table-bordered bg-light"
+                            >
+                              <thead>
+                                <tr>
+                                  <th>
+                                    {{ eachFlight.MarketingAirlineCode }}-{{
+                                      eachFlight.FlightNumber
+                                    }}
+                                  </th>
+                                  <td class="text-center">Cabin</td>
+                                  <td class="text-center">Check-In</td>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr
+                                  *ngFor="let eachBaggage of eachFlight.Baggage"
+                                >
+                                  <td *ngIf="eachBaggage.Type == 'ADT'">
+                                    Adult
+                                  </td>
+                                  <td *ngIf="eachBaggage.Type == 'CHD'">
+                                    Child
+                                  </td>
+                                  <td *ngIf="eachBaggage.Type == 'INF'">
+                                    Infant
+                                  </td>
+                                  <td class="text-center">-</td>
+                                  <td class="text-center">
+                                    {{ eachBaggage.Value }}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div
+                          class="tab-pane fade"
+                          id="fourth"
+                          role="tabpanel"
+                          aria-labelledby="fourth-tab"
+                        >
+                        <div class="bg-light shadow-md rounded p-4">
+                          <div id='inloader' *ngIf="inloaderShow"><div data-loader="dual-ring"></div></div>
+                          <div class="no-gutters" *ngFor="let eachFareRule of fareRuleList; let i = index">
+                          <h3 class="text-6">Airline : {{eachFareRule.Airline}}, City Pair : {{eachFareRule.CityPair}}, Pax Type : Adult</h3>
+                          <hr>
+                          <div class="row" >
+                              <div class="col-md-12">
+                              <div class="accordion accordion-alternate" id="accordion_{{i}}">
+                            <div class="card" *ngFor="let eachRule of eachFareRule.RuleDetails ; let in = index">
+                              <div class="card-header dibs" id="heading_{{i}}_{{in}}">
+                                <h5 class="mb-0">
+                                  <a href="#"  [ngClass]="{'collapsed':!eachRule.collapsed}" data-toggle="collapse" data-target="#faq_{{i}}_{{in}}" (click)="eachRule.collapsed=!eachRule.collapsed" aria-expanded="false" aria-controls="faq_{{i}}_{{in}}" data-parent="#accordion_{{i}}">{{eachRule.Category}}</a>
+                                </h5>
+                              </div>
+                              <div id="faq_{{i}}_{{in}}" [ngClass]="{'show':eachRule.collapsed}" class="collapse" aria-labelledby="heading_{{i}}_{{in}}" data-parent="#accordion_{{i}}">
+                                <div class="card-body"> {{eachRule.Rules}} </div>
+                              </div>
+                            </div>
+                           
+                          </div>
+                              </div>
+                          
+                          </div>
+                          <hr>
+                        </div>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Flight Details Modal Dialog end -->
+
+            <!-- Flight Matrix Modal Dialog============================================= -->
+            <div
+              id="flightMatrix"
+              class="modal fade"
+              role="dialog"
+              style="display: none"
+              aria-hidden="true"
+            >
+              <div
+                class="modal-dialog modal-lg modal-dialog-centered"
+                role="document"
+              >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Flight Matrix</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="table_container">
+                      <div class="row table_Cont_resp">
+                        <div class="side_header">
+                          <div class="side_item">All Flights</div>
+                          <div class="side_item">Non Stop</div>
+                          <div class="side_item">1 Stop</div>
+                          <div class="side_item">2+ Stop</div>
+                        </div>
+                        <div class="top_header_cont">
+                          <div class="inner_header_value_cont">
+                            <div class="top_header_heaing_cont">
+                              <div
+                                class="heading_item"
+                                *ngFor="let eachAirline of airlinesMatrixList"
+                              >
+                                <img
+                                  [src]="
+                                    cdnPath +
+                                    eachAirline.code +
+                                    '.png'
+                                  "
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="inner_value_cont">
+                            <div class="value_cont">
+                              <div
+                                class="value_item"
+                                
+                                *ngFor="let eachAirline of airlinesMatrixList"
+                                (click)="
+                                  flightSelect(
+                                    filterAirportList[eachAirline.nonId]
+                                  );
+                                  scroll('flightDiv'+eachAirline.nonId);
+                                "
+                              >
+                                from <span>{{ eachAirline.nonStop }}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="inner_value_cont">
+                            <div class="value_cont">
+                              <div
+                                class="value_item"
+                                
+                                *ngFor="let eachAirline of airlinesMatrixList"
+                                (click)="
+                                  flightSelect(
+                                    filterAirportList[eachAirline.oneId]
+                                  );
+                                  scroll('flightDiv'+eachAirline.oneId);
+                                "
+                              >
+                                from <span>{{ eachAirline.oneStop }}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="inner_value_cont">
+                            <div class="value_cont">
+                              <div
+                                class="value_item"
+                                data-dismiss="modal"
+                                *ngFor="let eachAirline of airlinesMatrixList"
+                                (click)="
+                                  flightSelect(
+                                    filterAirportList[eachAirline.twoplusId]
+                                  );
+                                  scroll('flightDiv'+eachAirline.twoplusId);
+                                "
+                              >
+                                from <span>{{ eachAirline.twoPlusStop }}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Flight Matrix Modal Dialog end -->
+            <!-- Pagination
+                ============================================= -->
+            <!-- <ul class="pagination justify-content-center mt-4 mb-0">
+                  <li class="page-item disabled"> <a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a> </li>
+                  <li class="page-item active"> <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a> </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"> <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a> </li>
+                </ul> -->
+            <!-- Pagination end -->
+          </div>
+        </div>
+
+        <!-- Selected Flight Fare
+            ============================================= -->
+        <div class="round-trip-fare fixed-bottom bg-dark shadow-md text-light">
+          <div class="container p-2 p-sm-4">
+            <div class="row align-items-center" *ngIf="showSelectMsg">
+              <p>Please select flight</p>
+            </div>
+            <div class="row align-items-center" *ngIf="!showSelectMsg">
+              <div class="col-8">
+                <div class="row">
+                  <div
+                    class="col-sm-6 border-right border-dark"
+                    [ngClass]="showReturnDiv ? 'col-12' : 'col-md-12'"
+                  >
+                    <div class="row align-items-center flex-row">
+                      <div
+                        class="col col-sm-4 col-md-3 text-center d-lg-flex company-info"
+                      >
+                        <!-- <span class="align-middle d-none d-sm-block"><img class="img-fluid" alt="" [src]="cdnPath+ selectedFlight.ValidatingAirlineCode +'.png'"><small class="text-white-50 d-block">{{selectedFlight.ValidatingAirlineCode}}-{{selectedFlight.OriginDestinationOptions[0].FlightSegments[0].FlightNumber}}</small> </span>  -->
+                        <span class="align-middle no-gutters ml-auto">
+                          <img *ngIf="selectedFlight.OriginDestinationOptions"
+                            class="img-fluid"
+                            alt=""
+                            [src]="
+                              cdnPath +
+                              selectedFlight.OriginDestinationOptions[0]
+                                .FlightSegments[0].MarketingAirlineCode +
+                              '.png'
+                            "
+                          />
+                          <small class="text-white-50 d-block" *ngIf="selectedFlight.OriginDestinationOptions"
+                            >{{
+                              selectedFlight.OriginDestinationOptions[0]
+                                .FlightSegments[0].MarketingAirlineCode
+                            }}-{{
+                              selectedFlight.OriginDestinationOptions[0]
+                                .FlightSegments[0].FlightNumber
+                            }}</small
+                          >
+                        </span>
+                      </div>
+                      <div class="col col-sm-4 col-md-3 text-center time-info">
+                        <span class="text-4" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          removeSpaceAndMakeLowerCase(selectedFlight.OriginDestinationOptions[0]
+                            .DepartureTime)
+                        }}</span>
+                        <small class="text-white-50 d-none d-lg-block" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          selectedFlight.OriginDestinationOptions[0]
+                            .DepartureAirport
+                            ? airportNameCodePair[
+                                selectedFlight.OriginDestinationOptions[0]
+                                  .DepartureAirport
+                              ].ct
+                            : ""
+                        }}</small>
+                      </div>
+                      <div class="col col-sm-4 col-md-3 text-center time-info">
+                        <span class="text-4" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          removeSpaceAndMakeLowerCase(selectedFlight.OriginDestinationOptions[0].ArrivalTime)
+                        }}</span>
+                        <small class="text-white-50 d-none d-lg-block" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          selectedFlight.OriginDestinationOptions[0]
+                            .ArrivalAirport
+                            ? airportNameCodePair[
+                                selectedFlight.OriginDestinationOptions[0]
+                                  .ArrivalAirport
+                              ].ct
+                            : ""
+                        }}</small>
+                      </div>
+                      <div
+                        class="col-md-3 text-center d-none d-md-block time-info"
+                      >
+                        <span class="text-1" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          selectedFlight.OriginDestinationOptions[0]
+                            .totalDurationFormatted
+                        }}</span>
+                        <small *ngIf="selectedFlight.OriginDestinationOptions"
+                          class="text-white-50 d-block"
+                          [innerHTML]="
+                            selectedFlight.OriginDestinationOptions[0].stops ==
+                            0
+                              ? 'Non Stop'
+                              : selectedFlight.OriginDestinationOptions[0]
+                                  .stops + ' Stop'
+                          "
+                        ></small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 d-block d-sm-none">
+                    <hr class="my-1 border-dark" />
+                  </div>
+                  <div
+                    class="col-12 col-sm-6 border-right border-dark"
+                    *ngIf="showReturnDiv"
+                  >
+                    <div class="row align-items-center flex-row">
+                      <div
+                        class="col col-sm-4 col-md-3 text-center d-lg-flex company-info"
+                      >
+                        <span class="align-middle no-gutters ml-auto">
+                          <img *ngIf="selectedFlight.OriginDestinationOptions"
+                            class="img-fluid"
+                            alt=""
+                            [src]="
+                              cdnPath +
+                              selectedFlight.OriginDestinationOptions[0]
+                                .FlightSegments[0].MarketingAirlineCode +
+                              '.png'
+                            "
+                          />
+                          <small class="text-white-50 d-block" *ngIf="selectedFlight.OriginDestinationOptions"
+                            >{{
+                              selectedFlight.OriginDestinationOptions[0]
+                                .FlightSegments[0].MarketingAirlineCode
+                            }}-{{
+                              selectedFlight.OriginDestinationOptions[1]
+                                .FlightSegments[0].FlightNumber
+                            }}</small
+                          >
+                        </span>
+                      </div>
+                      <div class="col col-sm-4 col-md-3 text-center time-info">
+                        <span class="text-4" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          removeSpaceAndMakeLowerCase(selectedFlight.OriginDestinationOptions[1]
+                            .DepartureTime)
+                        }}</span>
+                        <small class="text-white-50 d-none d-lg-block" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          selectedFlight.OriginDestinationOptions[1]
+                            .DepartureAirport
+                            ? airportNameCodePair[
+                                selectedFlight.OriginDestinationOptions[1]
+                                  .DepartureAirport
+                              ].ct
+                            : ""
+                        }}</small>
+                      </div>
+                      <div class="col col-sm-4 col-md-3 text-center time-info">
+                        <span class="text-4" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          removeSpaceAndMakeLowerCase(selectedFlight.OriginDestinationOptions[1].ArrivalTime)
+                        }}</span>
+                        <small class="text-white-50 d-none d-lg-block" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          selectedFlight.OriginDestinationOptions[1]
+                            .ArrivalAirport
+                            ? airportNameCodePair[
+                                selectedFlight.OriginDestinationOptions[1]
+                                  .ArrivalAirport
+                              ].ct
+                            : ""
+                        }}</small>
+                      </div>
+                      <div
+                        class="col-md-3 text-center d-none d-md-block time-info"
+                      >
+                        <span class="text-1" *ngIf="selectedFlight.OriginDestinationOptions">{{
+                          selectedFlight.OriginDestinationOptions[1]
+                            .totalDurationFormatted
+                        }}</span>
+                        <small *ngIf="selectedFlight.OriginDestinationOptions"
+                          class="text-white-50 d-block"
+                          [innerHTML]="
+                            selectedFlight.OriginDestinationOptions[1].stops ==
+                            0
+                              ? 'Non Stop'
+                              : selectedFlight.OriginDestinationOptions[1]
+                                  .stops + ' Stop'
+                          "
+                        ></small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="row align-items-center">
+                  <div
+                    class="col-12 col-md-6 text-light text-center text-4 price"
+                  >
+                    <span class="text-1 text-white-50 d-none d-lg-block"
+                      >Total Fare: </span
+                    ><span *ngIf="selectedFlight.AirItineraryPricingInfo"
+                      [innerHTML]="
+                        currency +
+                        ' ' +
+                        numberWithCommas(
+                          selectedFlight.AirItineraryPricingInfo.ItinTotalFare
+                            .TotalFare_curr
+                        )
+                      "
+                    ></span>
+                  </div>
+                  <div
+                    class="col-12 col-md-6 text-center mt-2 mt-md-0 btn-book"
+                  >
+                    <a
+                      class="btn btn-sm btn-primary px-sm-2 px-lg-3"
+                      (click)="flightConfirm()"
+                    >
+                      <!-- <i class="fas fa-shopping-cart d-block d-lg-none"></i>  -->
+                      <span class="d-lg-block">Book</span></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Selected Flight Fare end -->
+        <!-- flight expire (Modal Dialog)
+                    =============================================    -->
+                    <div id="timeOutErrorModal" class="modal fade" role="dialog" aria-hidden="true" data-backdrop="static">
+                      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">!Oops</h5>
+                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button> -->
+                          </div>
+                          <div class="modal-body">
+                            <div >
+                              <h3>Session Expired</h3>
+                              <h6>Please refresh to revalidate the flight fares and availability</h6>
+                            </div>
+                            
+                          </div>
+                          
+                           
+                           
+                            <div class="modal-footer" >
+                              <button class="btn btn-primary" type="button"  (click)="backtoHome()">Home Page</button>
+                              <button class="btn btn-secondary" type="button" (click)="flightInfoGet()">Refresh Search</button>
+                            </div>
+                          
+                        </div>
+                      </div>
+                    </div><!-- flight expire end -->
+      </div>
+    </section>
+    <!--Error Modal start-->
+    <app-error-modal></app-error-modal>
+    <!--Error Modal end-->
+  </div>
+  <!-- Content end -->
+
+  <!-- Footer
+    ============================================= -->
+</div>
